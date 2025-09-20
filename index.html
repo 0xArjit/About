@@ -6,12 +6,24 @@
     <title>Arjit Jha | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
+                        'github-light': {
+                            background: '#ffffff',
+                            surface: '#f6f8fa',
+                            text: '#24292f',
+                            border: '#d0d7de',
+                        },
+                        'github-dark': {
+                            background: '#0d1117',
+                            surface: '#161b22',
+                            text: '#f0f6fc',
+                            border: '#30363d',
+                        },
                         'material-light': {
                             primary: '#1976D2',
                             secondary: '#424242',
@@ -34,21 +46,39 @@
                             background: '#121212',
                             surface: '#1E1E1E',
                         },
-                        'github-light': {
-                            background: '#ffffff',
-                            surface: '#f6f8fa',
-                            text: '#24292f',
-                            border: '#d0d7de',
+                        'night-owl': {
+                            background: '#011627',
+                            surface: '#0b2942',
+                            text: '#d6deeb',
+                            primary: '#7fdbca',
+                            secondary: '#82aaff',
+                            accent: '#ff5874'
                         },
-                        'github-dark': {
-                            background: '#0d1117',
-                            surface: '#161b22',
-                            text: '#f0f6fc',
-                            border: '#30363d',
+                        'dracula': {
+                            background: '#282a36',
+                            surface: '#343746',
+                            text: '#f8f8f2',
+                            primary: '#bd93f9',
+                            secondary: '#ff79c6',
+                            accent: '#ff5555'
                         }
                     },
                     fontFamily: {
                         'roboto': ['Roboto', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
                 }
             }
@@ -57,7 +87,8 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
+            scroll-behavior: smooth;
         }
         .code-snippet {
             font-family: 'Courier New', monospace;
@@ -66,25 +97,14 @@
             padding: 0.5rem 1rem;
             border-radius: 0 4px 4px 0;
         }
-        .dark .code-snippet {
-            background: rgba(255, 255, 255, 0.05);
-            border-left: 4px solid #2196F3;
-        }
         .theme-transition * {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
         }
         .social-icon {
             transition: transform 0.3s ease;
         }
         .social-icon:hover {
             transform: translateY(-3px);
-        }
-        .page-transition {
-            animation: fadeIn 0.5s ease forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         .nav-item.active {
             position: relative;
@@ -98,28 +118,66 @@
             height: 2px;
             background-color: currentColor;
         }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .theme-selector {
+            transition: all 0.3s ease;
+        }
+        .theme-selector:hover {
+            transform: scale(1.1);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .dark .card-hover:hover {
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.05);
+        }
     </style>
 </head>
-<body class="bg-material-light-background text-material-light-secondary font-roboto theme-transition dark:bg-material-dark-background dark:text-material-dark-secondary min-h-screen flex flex-col">
-    <!-- Theme Toggle -->
-    <div class="fixed top-4 right-4 z-50">
-        <button id="theme-toggle" class="p-2 rounded-full bg-material-light-surface shadow-md dark:bg-material-dark-surface">
-            <svg id="theme-light-icon" class="w-5 h-5 text-material-light-secondary dark:hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-            </svg>
-            <svg id="theme-dark-icon" class="w-5 h-5 text-material-dark-secondary hidden dark:block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 2a1 1 0 011 1v1a1 1 0 01-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+<body class="bg-material-light-background text-material-light-secondary font-roboto theme-transition dark:bg-material-dark-background dark:text-material-dark-secondary">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Theme Selector -->
+    <div class="fixed bottom-4 right-4 z-50 flex flex-col items-end space-y-2">
+        <div id="theme-selector-container" class="bg-material-light-surface rounded-lg shadow-lg p-2 hidden dark:bg-material-dark-surface">
+            <div class="grid grid-cols-2 gap-2">
+                <button data-theme="github-light" class="theme-selector w-8 h-8 rounded-full bg-github-light-background border border-github-light-border"></button>
+                <button data-theme="github-dark" class="theme-selector w-8 h-8 rounded-full bg-github-dark-background border border-github-dark-border"></button>
+                <button data-theme="material-light" class="theme-selector w-8 h-8 rounded-full bg-material-light-background border border-material-light-border"></button>
+                <button data-theme="material-dark" class="theme-selector w-8 h-8 rounded-full bg-material-dark-background border border-material-dark-border"></button>
+                <button data-theme="night-owl" class="theme-selector w-8 h-8 rounded-full bg-night-owl-background border border-night-owl-primary"></button>
+                <button data-theme="dracula" class="theme-selector w-8 h-8 rounded-full bg-dracula-background border border-dracula-primary"></button>
+            </div>
+        </div>
+        <button id="theme-toggle" class="p-3 rounded-full bg-material-light-surface shadow-md dark:bg-material-dark-surface">
+            <svg class="w-6 h-6 text-material-light-primary dark:text-material-dark-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
             </svg>
         </button>
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-material-light-surface shadow-sm dark:bg-material-dark-surface sticky top-0 z-40">
+    <nav class="bg-material-light-surface/80 backdrop-blur-sm shadow-sm dark:bg-material-dark-surface/80 sticky top-0 z-40">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
-                <a href="#" class="text-xl font-medium text-material-light-primary dark:text-material-dark-primary">Arjit Jha</a>
+                <a href="#home" class="text-xl font-medium text-material-light-primary dark:text-material-dark-primary">Arjit Jha</a>
                 <div class="hidden md:flex space-x-6">
-                    <a href="#home" class="nav-item text-material-light-primary dark:text-material-dark-primary hover:text-material-light-accent dark:hover:text-material-dark-accent active">Home</a>
+                    <a href="#home" class="nav-item text-material-light-primary dark:text-material-dark-primary active">Home</a>
                     <a href="#about" class="nav-item text-material-light-secondary dark:text-material-dark-secondary hover:text-material-light-accent dark:hover:text-material-dark-accent">About</a>
                     <a href="#hobbies" class="nav-item text-material-light-secondary dark:text-material-dark-secondary hover:text-material-light-accent dark:hover:text-material-dark-accent">Hobbies</a>
                     <a href="#contact" class="nav-item text-material-light-secondary dark:text-material-dark-secondary hover:text-material-light-accent dark:hover:text-material-dark-accent">Contact</a>
@@ -132,7 +190,7 @@
             </div>
         </div>
         <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-material-light-surface dark:bg-material-dark-surface px-4 pb-3">
+        <div id="mobile-menu" class="hidden md:hidden bg-material-light-surface/95 dark:bg-material-dark-surface/95 px-4 pb-3">
             <div class="flex flex-col space-y-2">
                 <a href="#home" class="py-2 text-material-light-primary dark:text-material-dark-primary border-b border-material-light-border dark:border-material-dark-border">Home</a>
                 <a href="#about" class="py-2 text-material-light-secondary dark:text-material-dark-secondary border-b border-material-light-border dark:border-material-dark-border">About</a>
@@ -142,11 +200,11 @@
         </div>
     </nav>
 
-    <main class="flex-grow">
-        <!-- Home Page -->
-        <section id="home" class="page py-16 px-4 page-transition">
-            <div class="container mx-auto max-w-4xl flex flex-col items-center text-center">
-                <img src="https://avatars.githubusercontent.com/u/0xArjit" alt="Arjit Jha" class="w-32 h-32 rounded-full shadow-lg mb-6">
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section py-16 px-4">
+            <div class="container mx-auto max-w-4xl flex flex-col items-center text-center animate-fade-in">
+                <img src="https://avatars.githubusercontent.com/u/0xArjit" alt="Arjit Jha" class="w-40 h-40 rounded-full shadow-lg mb-6 animate-float">
                 <h1 class="text-4xl md:text-5xl font-bold text-material-light-primary dark:text-material-dark-primary mb-4">Arjit Jha</h1>
                 <p class="text-xl text-material-light-secondary dark:text-material-dark-secondary mb-6">Just a chill coder. Coding for fun and gaming breaks.</p>
                 <div class="code-snippet mb-8 text-left">
@@ -177,12 +235,12 @@
             </div>
         </section>
 
-        <!-- About Page -->
-        <section id="about" class="page py-16 px-4 bg-material-light-surface dark:bg-material-dark-surface hidden page-transition">
-            <div class="container mx-auto max-w-4xl">
+        <!-- About Section -->
+        <section id="about" class="section py-16 px-4 bg-material-light-surface dark:bg-material-dark-surface">
+            <div class="container mx-auto max-w-4xl animate-fade-in">
                 <h2 class="text-3xl font-bold text-material-light-primary dark:text-material-dark-primary mb-8 text-center">About Me</h2>
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div>
+                    <div class="card-hover bg-material-light-background dark:bg-material-dark-background p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-medium mb-4 text-material-light-primary dark:text-material-dark-primary">Basic Info</h3>
                         <ul class="space-y-2">
                             <li class="flex">
@@ -199,7 +257,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div>
+                    <div class="card-hover bg-material-light-background dark:bg-material-dark-background p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-medium mb-4 text-material-light-primary dark:text-material-dark-primary">Coding Philosophy</h3>
                         <div class="space-y-4">
                             <div class="code-snippet">
@@ -217,12 +275,12 @@
             </div>
         </section>
 
-        <!-- Hobbies Page -->
-        <section id="hobbies" class="page py-16 px-4 hidden page-transition">
-            <div class="container mx-auto max-w-4xl">
+        <!-- Hobbies Section -->
+        <section id="hobbies" class="section py-16 px-4">
+            <div class="container mx-auto max-w-4xl animate-fade-in">
                 <h2 class="text-3xl font-bold text-material-light-primary dark:text-material-dark-primary mb-8 text-center">My Hobbies</h2>
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-material-light-surface dark:bg-material-dark-surface p-6 rounded-lg shadow-sm">
+                    <div class="card-hover bg-material-light-surface dark:bg-material-dark-surface p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-medium mb-4 text-material-light-primary dark:text-material-dark-primary flex items-center">
                             <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
@@ -234,7 +292,7 @@
                             <span class="text-material-light-accent dark:text-material-dark-accent">// for(auto day : life) { code(); play(); }</span>
                         </div>
                     </div>
-                    <div class="bg-material-light-surface dark:bg-material-dark-surface p-6 rounded-lg shadow-sm">
+                    <div class="card-hover bg-material-light-surface dark:bg-material-dark-surface p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-medium mb-4 text-material-light-primary dark:text-material-dark-primary flex items-center">
                             <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
@@ -248,7 +306,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-8 text-center">
+                <div class="mt-12 text-center">
                     <div class="code-snippet inline-block">
                         <span class="text-material-light-accent dark:text-material-dark-accent">// while(alive) { coffee(); code(); }</span>
                     </div>
@@ -256,14 +314,14 @@
             </div>
         </section>
 
-        <!-- Contact Page -->
-        <section id="contact" class="page py-16 px-4 bg-material-light-surface dark:bg-material-dark-surface hidden page-transition">
-            <div class="container mx-auto max-w-4xl">
+        <!-- Contact Section -->
+        <section id="contact" class="section py-16 px-4 bg-material-light-surface dark:bg-material-dark-surface">
+            <div class="container mx-auto max-w-4xl animate-fade-in">
                 <h2 class="text-3xl font-bold text-material-light-primary dark:text-material-dark-primary mb-8 text-center">Get In Touch</h2>
                 <p class="text-center mb-8">Feel free to reach out to me through any of these platforms:</p>
                 
                 <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                    <a href="https://github.com/0xArjit" target="_blank" class="flex items-center p-4 bg-material-light-background dark:bg-material-dark-background rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <a href="https://github.com/0xArjit" target="_blank" class="card-hover flex items-center p-4 bg-material-light-background dark:bg-material-dark-background rounded-lg shadow-sm">
                         <svg class="w-8 h-8 mr-4 text-material-light-secondary dark:text-material-dark-secondary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
                         </svg>
@@ -272,7 +330,7 @@
                             <p class="text-material-light-secondary dark:text-material-dark-secondary">@0xArjit</p>
                         </div>
                     </a>
-                    <a href="https://www.instagram.com/arjit.xyz" target="_blank" class="flex items-center p-4 bg-material-light-background dark:bg-material-dark-background rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <a href="https://www.instagram.com/arjit.xyz" target="_blank" class="card-hover flex items-center p-4 bg-material-light-background dark:bg-material-dark-background rounded-lg shadow-sm">
                         <svg class="w-8 h-8 mr-4 text-material-light-secondary dark:text-material-dark-secondary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
                         </svg>
@@ -281,7 +339,7 @@
                             <p class="text-material-light-secondary dark:text-material-dark-secondary">@arjit.xyz</p>
                         </div>
                     </a>
-                    <a href="https://t.me/ThisIsARJ" target="_blank" class="flex items-center p-4 bg-material-light-background dark:bg-material-dark-background rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <a href="https://t.me/ThisIsARJ" target="_blank" class="card-hover flex items-center p-4 bg-material-light-background dark:bg-material-dark-background rounded-lg shadow-sm">
                         <svg class="w-8 h-8 mr-4 text-material-light-secondary dark:text-material-dark-secondary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.14.141-.259.259-.374.261l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
                         </svg>
@@ -290,7 +348,7 @@
                             <p class="text-material-light-secondary dark:text-material-dark-secondary">@ThisIsARJ</p>
                         </div>
                     </a>
-                    <a href="mailto:arjitjha47@gmail.com" class="flex items-center p-4 bg-material-light-background dark:bg-material-dark-background rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <a href="mailto:arjitjha47@gmail.com" class="card-hover flex items-center p-4 bg-material-light-background dark:bg-material-dark-background rounded-lg shadow-sm">
                         <svg class="w-8 h-8 mr-4 text-material-light-secondary dark:text-material-dark-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
@@ -318,42 +376,174 @@
     </footer>
 
     <script>
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#1976D2" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#1976D2",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
         // Theme management
         const themeToggle = document.getElementById('theme-toggle');
-        const themeLightIcon = document.getElementById('theme-light-icon');
-        const themeDarkIcon = document.getElementById('theme-dark-icon');
+        const themeSelectorContainer = document.getElementById('theme-selector-container');
+        const themeSelectors = document.querySelectorAll('.theme-selector');
         
         // Check for saved theme preference or respect OS preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'material-dark' : 'material-light');
+        applyTheme(savedTheme);
         
         themeToggle.addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
+            themeSelectorContainer.classList.toggle('hidden');
         });
+        
+        themeSelectors.forEach(selector => {
+            selector.addEventListener('click', () => {
+                const theme = selector.getAttribute('data-theme');
+                applyTheme(theme);
+                localStorage.setItem('theme', theme);
+                themeSelectorContainer.classList.add('hidden');
+            });
+        });
+        
+        function applyTheme(theme) {
+            document.documentElement.classList.remove('github-light', 'github-dark', 'material-light', 'material-dark', 'night-owl', 'dracula');
+            
+            if (theme === 'github-light') {
+                document.documentElement.classList.add('github-light');
+                document.body.className = 'bg-github-light-background text-github-light-text font-roboto theme-transition';
+            } else if (theme === 'github-dark') {
+                document.documentElement.classList.add('github-dark');
+                document.body.className = 'bg-github-dark-background text-github-dark-text font-roboto theme-transition';
+            } else if (theme === 'material-light') {
+                document.documentElement.classList.add('material-light');
+                document.body.className = 'bg-material-light-background text-material-light-secondary font-roboto theme-transition';
+            } else if (theme === 'material-dark') {
+                document.documentElement.classList.add('material-dark');
+                document.body.className = 'bg-material-dark-background text-material-dark-secondary font-roboto theme-transition';
+            } else if (theme === 'night-owl') {
+                document.documentElement.classList.add('night-owl');
+                document.body.className = 'bg-night-owl-background text-night-owl-text font-roboto theme-transition';
+            } else if (theme === 'dracula') {
+                document.documentElement.classList.add('dracula');
+                document.body.className = 'bg-dracula-background text-dracula-text font-roboto theme-transition';
+            }
+            
+            // Update particles color based on theme
+            if (theme.includes('dark') || theme === 'night-owl' || theme === 'dracula') {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 800 } },
+                        color: { value: "#82aaff" },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.5, random: true },
+                        size: { value: 3, random: true },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: "#82aaff",
+                            opacity: 0.4,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 2,
+                            direction: "none",
+                            random: true,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false
+                        }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: { enable: true, mode: "grab" },
+                            onclick: { enable: true, mode: "push" },
+                            resize: true
+                        }
+                    },
+                    retina_detect: true
+                });
+            } else {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 800 } },
+                        color: { value: "#1976D2" },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.5, random: true },
+                        size: { value: 3, random: true },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: "#1976D2",
+                            opacity: 0.4,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 2,
+                            direction: "none",
+                            random: true,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false
+                        }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: { enable: true, mode: "grab" },
+                            onclick: { enable: true, mode: "push" },
+                            resize: true
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
+        }
         
         // Navigation
         const navItems = document.querySelectorAll('.nav-item');
-        const pages = document.querySelectorAll('.page');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         
-        function showPage(pageId) {
-            pages.forEach(page => {
-                page.classList.add('hidden');
-                if (page.id === pageId) {
-                    setTimeout(() => {
-                        page.classList.remove('hidden');
-                        page.classList.add('page-transition');
-                    }, 10);
+        function setActiveNavItem() {
+            const sections = document.querySelectorAll('section');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    currentSection = section.getAttribute('id');
                 }
             });
             
@@ -361,22 +551,28 @@
                 item.classList.remove('active', 'text-material-light-primary', 'dark:text-material-dark-primary');
                 item.classList.add('text-material-light-secondary', 'dark:text-material-dark-secondary');
                 
-                if (item.getAttribute('href') === `#${pageId}`) {
+                if (item.getAttribute('href') === `#${currentSection}`) {
                     item.classList.add('active', 'text-material-light-primary', 'dark:text-material-dark-primary');
                     item.classList.remove('text-material-light-secondary', 'dark:text-material-dark-secondary');
                 }
             });
-            
-            // Close mobile menu if open
-            mobileMenu.classList.add('hidden');
         }
+        
+        window.addEventListener('scroll', setActiveNavItem);
         
         navItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-                const pageId = item.getAttribute('href').substring(1);
-                showPage(pageId);
-                window.history.pushState(null, null, `#${pageId}`);
+                const targetId = item.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
             });
         });
         
@@ -385,14 +581,11 @@
             mobileMenu.classList.toggle('hidden');
         });
         
-        // Handle initial page load based on URL hash
-        const initialPage = window.location.hash ? window.location.hash.substring(1) : 'home';
-        showPage(initialPage);
-        
-        // Handle browser back/forward navigation
-        window.addEventListener('popstate', () => {
-            const page = window.location.hash ? window.location.hash.substring(1) : 'home';
-            showPage(page);
+        // Close theme selector when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!themeToggle.contains(e.target) && !themeSelectorContainer.contains(e.target)) {
+                themeSelectorContainer.classList.add('hidden');
+            }
         });
     </script>
 </body>
