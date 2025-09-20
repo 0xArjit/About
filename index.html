@@ -1,941 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0xArjit - About Me</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --accent: #10b981;
-            --background: #ffffff;
-            --surface: #f8fafc;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --shadow: rgba(0, 0, 0, 0.1);
-        }
-        
-        [data-theme="dark"] {
-            --primary: #818cf8;
-            --primary-dark: #6366f1;
-            --accent: #34d399;
-            --background: #0f172a;
-            --surface: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --shadow: rgba(0, 0, 0, 0.3);
-        }
-        
-        [data-theme="colorful"] {
-            --primary: #f59e0b;
-            --primary-dark: #d97706;
-            --accent: #ec4899;
-            --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --surface: rgba(255, 255, 255, 0.1);
-            --text-primary: #ffffff;
-            --text-secondary: #e2e8f0;
-            --shadow: rgba(0, 0, 0, 0.2);
-        }
-        
-        body {
-            background: var(--background);
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-        
-        .glass-effect {
-            background: var(--surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .typing-effect {
-            border-right: 2px solid var(--primary);
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { border-color: var(--primary); }
-            51%, 100% { border-color: transparent; }
-        }
-        
-        .code-block {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 1rem;
-            font-family: 'Courier New', monospace;
-            color: #10b981;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .code-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            animation: scan 2s linear infinite;
-        }
-        
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-        
-        .social-btn {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .social-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: all 0.5s;
-            transform: translate(-50%, -50%);
-        }
-        
-        .social-btn:active::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .pulse-ring {
-            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
-        
-        @keyframes pulse-ring {
-            0% { transform: scale(.33); }
-            80%, 100% { opacity: 0; }
-        }
-        
-        .bounce-in {
-            animation: bounceIn 1s ease-out forwards;
-        }
-        
-        @keyframes bounceIn {
-            0% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.05); }
-            70% { transform: scale(0.9); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        .slide-up {
-            animation: slideUp 0.8s ease-out forwards;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .easter-egg {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .easter-egg:active {
-            transform: scale(0.95);
-        }
-        
-        .konami-activated {
-            animation: rainbow 2s linear infinite;
-        }
-        
-        @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-        
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transform-origin: left;
-            z-index: 1000;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0xArjit - About Me</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+/* Base Fonts */
+* { font-family: 'Roboto', sans-serif; margin:0; padding:0; box-sizing:border-box; }
+
+/* Theme Variables */
+:root {
+--primary: #6366f1; --primary-dark: #4f46e5; --accent: #10b981; --background: #ffffff; --surface: #f8fafc;
+--text-primary: #1e293b; --text-secondary: #64748b; --shadow: rgba(0,0,0,0.1);
+}
+[data-theme="dark"]{
+--primary:#818cf8; --primary-dark:#6366f1; --accent:#34d399; --background:#0f172a;
+--surface:#1e293b; --text-primary:#f1f5f9; --text-secondary:#cbd5e1; --shadow: rgba(0,0,0,0.3);
+}
+[data-theme="colorful"]{
+--primary:#f59e0b; --primary-dark:#d97706; --accent:#ec4899; --background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+--surface: rgba(255,255,255,0.1); --text-primary:#fff; --text-secondary:#e2e8f0; --shadow: rgba(0,0,0,0.2);
+}
+
+/* Body */
+body{background:var(--background);color:var(--text-primary);transition:all 0.3s ease;}
+.glass-effect{background:var(--surface);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);}
+.gradient-text{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.floating{animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.typing-effect{border-right:2px solid var(--primary);animation:blink 1s infinite;}
+@keyframes blink{0%,50%{border-color:var(--primary);}51%,100%{border-color:transparent;}}
+.code-block{background:#1e293b;border-radius:12px;padding:1rem;font-family:'Courier New', monospace;color:#10b981;position:relative;overflow:hidden;word-break:break-word;}
+.code-block::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:scan 2s linear infinite;}
+@keyframes scan{0%{left:-100%;}100%{left:100%;}}
+.social-btn{transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;}
+.social-btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(255,255,255,0.2);transition:all 0.5s;transform:translate(-50%,-50%);}
+.social-btn:active::before{width:300px;height:300px;}
+.pulse-ring{animation:pulse-ring 1.5s cubic-bezier(0.215,0.61,0.355,1) infinite;}
+@keyframes pulse-ring{0%{transform:scale(.33);}80%,100%{opacity:0;}}
+.bounce-in{animation:bounceIn 1s ease-out forwards;}
+@keyframes bounceIn{0%{transform:scale(0.3);opacity:0;}50%{transform:scale(1.05);}70%{transform:scale(0.9);}100%{transform:scale(1);opacity:1;}}
+.slide-up{opacity:0;transform:translateY(30px);animation:slideUp 0.8s ease-out forwards;}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.easter-egg{cursor:pointer;transition:all 0.3s ease;}
+.easter-egg:active{transform:scale(0.95);}
+.konami-activated{animation:rainbow 2s linear infinite;}
+@keyframes rainbow{0%{filter:hue-rotate(0deg);}100%{filter:hue-rotate(360deg);}}
+.scroll-indicator{position:fixed;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));transform-origin:left;z-index:1000;}
+@media (max-width:768px){.floating{display:none;}.text-5xl{font-size:3rem;}.text-4xl{font-size:2.25rem;}}
+@media (max-width:480px){.text-5xl{font-size:2.5rem;}.text-4xl{font-size:2rem;}}
+</style>
 </head>
 <body class="overflow-x-hidden" data-theme="system">
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator" style="transform: scaleX(0);"></div>
-    
-    <!-- Theme Switcher -->
-    <div class="fixed top-4 right-4 z-50">
-        <button id="theme-btn" class="glass-effect p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110">
-            <i class="fas fa-palette text-xl" style="color: var(--primary);"></i>
-        </button>
-    </div>
-    
-    <!-- Theme Modal -->
-    <div id="theme-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
-        <div class="glass-effect p-6 rounded-2xl max-w-sm w-full">
-            <h3 class="text-lg font-bold mb-4">Choose Theme</h3>
-            <div class="space-y-3">
-                <button class="theme-option w-full p-3 rounded-lg text-left transition-all duration-300" data-theme="system">
-                    <i class="fas fa-desktop mr-3"></i> System Default
-                </button>
-                <button class="theme-option w-full p-3 rounded-lg text-left transition-all duration-300" data-theme="light">
-                    <i class="fas fa-sun mr-3"></i> Light Mode
-                </button>
-                <button class="theme-option w-full p-3 rounded-lg text-left transition-all duration-300" data-theme="dark">
-                    <i class="fas fa-moon mr-3"></i> Dark Mode
-                </button>
-                <button class="theme-option w-full p-3 rounded-lg text-left transition-all duration-300" data-theme="colorful">
-                    <i class="fas fa-rainbow mr-3"></i> Colorful
-                </button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center px-4 relative">
-        <div class="text-center max-w-4xl">
-            <!-- Floating Code Elements -->
-            <div class="absolute top-20 left-10 opacity-20 floating" style="animation-delay: 0s;">
-                <div class="code-block text-sm">
-                    console.log('Hello World!');
-                </div>
-            </div>
-            <div class="absolute top-40 right-10 opacity-20 floating" style="animation-delay: 1s;">
-                <div class="code-block text-sm">
-                    while(coding) { fun++; }
-                </div>
-            </div>
-            <div class="absolute bottom-40 left-20 opacity-20 floating" style="animation-delay: 2s;">
-                <div class="code-block text-sm">
-                    #include &lt;awesome.h&gt;
-                </div>
-            </div>
-            
-            <!-- Main Content -->
-            <div class="bounce-in">
-                <div class="relative inline-block mb-6">
-                    <img src="https://github.com/0xArjit.png" alt="Arjit" class="w-32 h-32 rounded-full mx-auto shadow-xl border-4 border-white/20 easter-egg" id="profile-pic">
-                    <div class="absolute -inset-2 rounded-full border-2 border-dashed opacity-30 pulse-ring" style="border-color: var(--primary);"></div>
-                </div>
-                
-                <h1 class="text-5xl md:text-7xl font-bold gradient-text mb-4">
-                    0x<span class="easter-egg" id="name-easter">Arjit</span>
-                </h1>
-                
-                <div class="text-xl md:text-2xl text-secondary mb-2">
-                    <span id="typing-text" class="typing-effect"></span>
-                </div>
-                
-                <p class="text-lg opacity-80 mb-8 max-w-2xl mx-auto">
-                    17-year-old developer from <span class="easter-egg gradient-text font-semibold" id="location-easter">Pakur, Jharkhand 🇮🇳</span>
-                    <br>Turning caffeine into code, one bug at a time ☕
-                </p>
-                
-                <div class="flex justify-center">
-                    <button onclick="scrollToSection('about')" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                        Explore My World
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text slide-up">
-                About Me
-            </h2>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="slide-up">
-                    <div class="code-block mb-8">
-                        <div class="flex items-center mb-2">
-                            <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                            <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                            <span class="ml-2 text-gray-400">about_arjit.cpp</span>
-                        </div>
-                        <pre class="text-sm" id="code-animation"></pre>
-                    </div>
-                </div>
-                
-                <div class="slide-up space-y-6">
-                    <div class="glass-effect p-6 rounded-2xl">
-                        <h3 class="text-2xl font-bold mb-4 gradient-text">The Human Behind The Code</h3>
-                        <p class="text-lg opacity-90 leading-relaxed">
-                            Hey there! I'm a 17-year-old coding enthusiast who believes that the best programs are written with passion, 
-                            a good playlist, and way too much coffee. When I'm not debugging my life choices, you'll find me gaming 
-                            or discovering new music that makes my code compile faster (it's science, trust me! 🤓).
-                        </p>
-                    </div>
-                    
-                    <div class="glass-effect p-6 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-3">Fun Facts</h3>
-                        <div class="space-y-2">
-                            <div class="flex items-center">
-                                <i class="fas fa-code mr-3 text-green-400"></i>
-                                <span>I dream in C++ and wake up debugging</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-gamepad mr-3 text-blue-400"></i>
-                                <span>My KDA in games > My commit frequency</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-music mr-3 text-purple-400"></i>
-                                <span>Music = Code fuel ⛽</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Hobbies Section -->
-    <section id="hobbies" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
-                My Passions
-            </h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Coding Card -->
-                <div class="glass-effect p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 easter-egg" id="coding-card">
-                    <div class="text-6xl mb-4">💻</div>
-                    <h3 class="text-2xl font-bold mb-4 gradient-text">Coding</h3>
-                    <p class="opacity-90 mb-4">
-                        Crafting digital magic with C++, Python, and whatever language doesn't make me cry.
-                    </p>
-                    <div class="code-block text-xs">
-                        if (coding == life) {<br>
-                        &nbsp;&nbsp;happiness = true;<br>
-                        }
-                    </div>
-                </div>
-                
-                <!-- Gaming Card -->
-                <div class="glass-effect p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 easter-egg" id="gaming-card">
-                    <div class="text-6xl mb-4">🎮</div>
-                    <h3 class="text-2xl font-bold mb-4 gradient-text">Gaming</h3>
-                    <p class="opacity-90 mb-4">
-                        Professional button masher and amateur rage-quitter. Currently accepting sponsorships from energy drink companies.
-                    </p>
-                    <div class="flex justify-center space-x-2 mt-4">
-                        <div class="w-3 h-3 bg-green-400 rounded animate-pulse"></div>
-                        <div class="w-3 h-3 bg-yellow-400 rounded animate-pulse" style="animation-delay: 0.2s;"></div>
-                        <div class="w-3 h-3 bg-red-400 rounded animate-pulse" style="animation-delay: 0.4s;"></div>
-                    </div>
-                </div>
-                
-                <!-- Music Card -->
-                <div class="glass-effect p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 easter-egg" id="music-card">
-                    <div class="text-6xl mb-4">🎵</div>
-                    <h3 class="text-2xl font-bold mb-4 gradient-text">Music</h3>
-                    <p class="opacity-90 mb-4">
-                        My code compiles to the beat. Playlist quality directly correlates with code quality (scientifically proven*).
-                    </p>
-                    <div class="flex justify-center space-x-1 mt-4">
-                        <div class="w-2 bg-gradient-to-t from-purple-500 to-pink-500 rounded-full music-bar" style="height: 20px; animation: musicBar 1s infinite ease-in-out;"></div>
-                        <div class="w-2 bg-gradient-to-t from-purple-500 to-pink-500 rounded-full music-bar" style="height: 15px; animation: musicBar 1s infinite ease-in-out 0.1s;"></div>
-                        <div class="w-2 bg-gradient-to-t from-purple-500 to-pink-500 rounded-full music-bar" style="height: 25px; animation: musicBar 1s infinite ease-in-out 0.2s;"></div>
-                        <div class="w-2 bg-gradient-to-t from-purple-500 to-pink-500 rounded-full music-bar" style="height: 18px; animation: musicBar 1s infinite ease-in-out 0.3s;"></div>
-                        <div class="w-2 bg-gradient-to-t from-purple-500 to-pink-500 rounded-full music-bar" style="height: 22px; animation: musicBar 1s infinite ease-in-out 0.4s;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Social Links Section -->
-    <section id="social" class="py-20 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-16 gradient-text">
-                Let's Connect!
-            </h2>
-            
-            <p class="text-xl opacity-90 mb-12">
-                Find me across the digital universe. I promise I'm more interesting online! 😄
-            </p>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <a href="https://github.com/0xArjit" target="_blank" class="social-btn glass-effect p-6 rounded-2xl text-center hover:scale-110 transition-all duration-300">
-                    <i class="fab fa-github text-4xl mb-4"></i>
-                    <p class="font-semibold">GitHub</p>
-                    <p class="text-sm opacity-70">Where magic happens</p>
-                </a>
-                
-                <a href="https://instagram.com/arjit.xyz" target="_blank" class="social-btn glass-effect p-6 rounded-2xl text-center hover:scale-110 transition-all duration-300">
-                    <i class="fab fa-instagram text-4xl mb-4" style="color: #E4405F;"></i>
-                    <p class="font-semibold">Instagram</p>
-                    <p class="text-sm opacity-70">@arjit.xyz</p>
-                </a>
-                
-                <a href="https://t.me/ThisIsARJ" target="_blank" class="social-btn glass-effect p-6 rounded-2xl text-center hover:scale-110 transition-all duration-300">
-                    <i class="fab fa-telegram text-4xl mb-4" style="color: #0088cc;"></i>
-                    <p class="font-semibold">Telegram</p>
-                    <p class="text-sm opacity-70">ThisIsARJ</p>
-                </a>
-                
-                <a href="mailto:arjitjha47@gmail.com" class="social-btn glass-effect p-6 rounded-2xl text-center hover:scale-110 transition-all duration-300">
-                    <i class="fas fa-envelope text-4xl mb-4" style="color: #ea4335;"></i>
-                    <p class="font-semibold">Email</p>
-                    <p class="text-sm opacity-70">Let's talk!</p>
-                </a>
-            </div>
-            
-            <div class="mt-12 glass-effect p-6 rounded-2xl">
-                <h3 class="text-xl font-bold mb-4">Easter Egg Hunter? 🥚</h3>
-                <p class="opacity-90">
-                    You've found <span id="easter-count">0</span> out of 7 easter eggs! 
-                    Keep tapping around... there might be some surprises! 😉
-                </p>
-                <div class="mt-4">
-                    <div class="flex justify-center space-x-2">
-                        <div class="w-3 h-3 bg-gray-400 rounded-full easter-indicator" data-egg="1"></div>
-                        <div class="w-3 h-3 bg-gray-400 rounded-full easter-indicator" data-egg="2"></div>
-                        <div class="w-3 h-3 bg-gray-400 rounded-full easter-indicator" data-egg="3"></div>
-                        <div class="w-3 h-3 bg-gray-400 rounded-full easter-indicator" data-egg="4"></div>
-                        <div class="w-3 h-3 bg-gray-400 rounded-full easter-indicator" data-egg="5"></div>
-                        <div class="w-3 h-3 bg-gray-400 rounded-full easter-indicator" data-egg="6"></div>
-                        <div class="w-3 h-3 bg-gray-400 rounded-full easter-indicator" data-egg="7"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="py-12 px-4 text-center">
-        <div class="max-w-4xl mx-auto">
-            <div class="glass-effect p-8 rounded-2xl">
-                <p class="text-lg mb-4">
-                    Built with ❤️, ☕, and way too many Stack Overflow tabs
-                </p>
-                <p class="opacity-70">
-                    © 2024 0xArjit | Made with Tailwind CSS & lots of bugs that became features
-                </p>
-                <div class="mt-4">
-                    <button id="secret-button" class="easter-egg opacity-20 hover:opacity-100 transition-opacity">
-                        <i class="fas fa-code text-sm"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- Toast Notifications -->
-    <div id="toast-container" class="fixed top-20 right-4 z-50 space-y-2"></div>
-    
-    <script>
-        // Global variables
-        let easterEggs = {
-            found: [],
-            total: 7,
-            messages: [
-                "Hello World! You found me! 🌍",
-                "Segmentation fault (core dumped)... just kidding! 😄",
-                "Achievement Unlocked: Button Master! 🏆",
-                "Console.log('You're awesome!') 💖",
-                "404: Easter Egg not found... wait, you just did! 🥚",
-                "Pakur represent! 🏠",
-                "You've got the gaming skills! 🎮"
-            ]
-        };
-        
-        // Typing effect
-        const texts = [
-            "Code Wizard 🧙‍♂️",
-            "Gaming Enthusiast 🎮",
-            "Music Lover 🎵",
-            "Bug Hunter 🐛",
-            "Coffee Addict ☕",
-            "Dreamer & Creator ✨"
-        ];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        
-        function typeWriter() {
-            const currentText = texts[textIndex];
-            const typingElement = document.getElementById('typing-text');
-            
-            if (isDeleting) {
-                typingElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-                
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    textIndex = (textIndex + 1) % texts.length;
-                    setTimeout(typeWriter, 500);
-                    return;
-                }
-            } else {
-                typingElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-                
-                if (charIndex === currentText.length) {
-                    isDeleting = true;
-                    setTimeout(typeWriter, 2000);
-                    return;
-                }
-            }
-            
-            setTimeout(typeWriter, isDeleting ? 50 : 100);
-        }
-        
-        // Code animation
-        function animateCode() {
-            const codeLines = [
-                '#include <iostream>',
-                '#include <passion.h>',
-                '',
-                'class Developer {',
-                'public:',
-                '    string name = "Arjit";',
-                '    int age = 17;',
-                '    string location = "Pakur, JH";',
-                '    vector<string> hobbies = {',
-                '        "coding", "gaming", "music"',
-                '    };',
-                '    ',
-                '    void introduce() {',
-                '        cout << "Hello World!" << endl;',
-                '        cout << "Let\'s create magic!" << endl;',
-                '    }',
-                '};'
-            ];
-            
-            let lineIndex = 0;
-            const codeElement = document.getElementById('code-animation');
-            
-            function addLine() {
-                if (lineIndex < codeLines.length) {
-                    codeElement.textContent += codeLines[lineIndex] + '\n';
-                    lineIndex++;
-                    setTimeout(addLine, 200);
-                }
-            }
-            
-            addLine();
-        }
-        
-        // Theme switching
-        function initTheme() {
-            const themeBtn = document.getElementById('theme-btn');
-            const themeModal = document.getElementById('theme-modal');
-            const themeOptions = document.querySelectorAll('.theme-option');
-            
-            // Get system theme
-            function getSystemTheme() {
-                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
-            
-            // Apply theme
-            function applyTheme(theme) {
-                const actualTheme = theme === 'system' ? getSystemTheme() : theme;
-                document.body.setAttribute('data-theme', actualTheme);
-                localStorage.setItem('preferred-theme', theme);
-                
-                // Update active theme option
-                themeOptions.forEach(option => {
-                    option.classList.remove('bg-white/20');
-                    if (option.dataset.theme === theme) {
-                        option.classList.add('bg-white/20');
-                    }
-                });
-            }
-            
-            // Load saved theme or use system
-            const savedTheme = localStorage.getItem('preferred-theme') || 'system';
-            applyTheme(savedTheme);
-            
-            // Theme button click
-            themeBtn.addEventListener('click', () => {
-                themeModal.classList.remove('hidden');
-                themeModal.classList.add('flex');
-            });
-            
-            // Close modal on background click
-            themeModal.addEventListener('click', (e) => {
-                if (e.target === themeModal) {
-                    themeModal.classList.add('hidden');
-                    themeModal.classList.remove('flex');
-                }
-            });
-            
-            // Theme option clicks
-            themeOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    applyTheme(option.dataset.theme);
-                    themeModal.classList.add('hidden');
-                    themeModal.classList.remove('flex');
-                });
-            });
-            
-            // Listen for system theme changes
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-                if (localStorage.getItem('preferred-theme') === 'system') {
-                    applyTheme('system');
-                }
-            });
-        }
-        
-        // Scroll indicator
-        function updateScrollIndicator() {
-            const scrollIndicator = document.querySelector('.scroll-indicator');
-            const scrollTop = document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercent = (scrollTop / scrollHeight);
-            
-            scrollIndicator.style.transform = `scaleX(${scrollPercent})`;
-        }
-        
-        // Smooth scroll
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-        
-        // Toast notifications
-        function showToast(message, type = 'success') {
-            const toastContainer = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            
-            toast.className = `glass-effect p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full`;
-            toast.innerHTML = `
-                <div class="flex items-center">
-                    <i class="fas ${type === 'success' ? 'fa-check-circle text-green-400' : 'fa-info-circle text-blue-400'} mr-3"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            
-            toastContainer.appendChild(toast);
-            
-            // Animate in
-            setTimeout(() => {
-                toast.classList.remove('translate-x-full');
-            }, 100);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                toast.classList.add('translate-x-full');
-                setTimeout(() => {
-                    toastContainer.removeChild(toast);
-                }, 300);
-            }, 3000);
-        }
-        
-        // Easter eggs
-        function foundEasterEgg(eggNumber) {
-            if (!easterEggs.found.includes(eggNumber)) {
-                easterEggs.found.push(eggNumber);
-                
-                // Update indicator
-                const indicator = document.querySelector(`[data-egg="${eggNumber}"]`);
-                indicator.classList.remove('bg-gray-400');
-                indicator.classList.add('bg-gradient-to-r', 'from-purple-500', 'to-pink-500');
-                
-                // Update counter
-                document.getElementById('easter-count').textContent = easterEggs.found.length;
-                
-                // Show toast
-                showToast(easterEggs.messages[eggNumber - 1]);
-                
-                // Special effects for completing all
-                if (easterEggs.found.length === easterEggs.total) {
-                    setTimeout(() => {
-                        showToast("🎉 Amazing! You found all easter eggs! You're a true explorer!", 'success');
-                        document.body.classList.add('konami-activated');
-                        setTimeout(() => {
-                            document.body.classList.remove('konami-activated');
-                        }, 3000);
-                    }, 1000);
-                }
-            }
-        }
-        
-        // Initialize easter eggs
-        function initEasterEggs() {
-            // Easter egg 1: Profile picture
-            let profileClickCount = 0;
-            document.getElementById('profile-pic').addEventListener('click', () => {
-                profileClickCount++;
-                if (profileClickCount === 3) {
-                    foundEasterEgg(1);
-                    profileClickCount = 0;
-                }
-            });
-            
-            // Easter egg 2: Name
-            document.getElementById('name-easter').addEventListener('click', () => {
-                foundEasterEgg(2);
-            });
-            
-            // Easter egg 3: Location
-            document.getElementById('location-easter').addEventListener('click', () => {
-                foundEasterEgg(6);
-            });
-            
-            // Easter egg 4: Coding card
-            document.getElementById('coding-card').addEventListener('click', () => {
-                foundEasterEgg(4);
-            });
-            
-            // Easter egg 5: Gaming card
-            document.getElementById('gaming-card').addEventListener('click', () => {
-                foundEasterEgg(7);
-            });
-            
-            // Easter egg 6: Music card
-            document.getElementById('music-card').addEventListener('click', () => {
-                foundEasterEgg(3);
-            });
-            
-            // Easter egg 7: Secret button
-            document.getElementById('secret-button').addEventListener('click', () => {
-                foundEasterEgg(5);
-            });
-        }
-        
-        // Music bars animation
-        function initMusicBars() {
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes musicBar {
-                    0%, 100% { transform: scaleY(0.3); }
-                    50% { transform: scaleY(1); }
-                }
-                .music-bar {
-                    transform-origin: bottom;
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Intersection Observer for animations
-        function initScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('slide-up');
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe elements with slide-up class
-            document.querySelectorAll('.slide-up').forEach(el => {
-                observer.observe(el);
-            });
-        }
-        
-        // Konami code easter egg
-        function initKonamiCode() {
-            const konamiCode = [
-                'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-                'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-                'KeyB', 'KeyA'
-            ];
-            let konamiIndex = 0;
-            
-            document.addEventListener('keydown', (e) => {
-                if (e.code === konamiCode[konamiIndex]) {
-                    konamiIndex++;
-                    if (konamiIndex === konamiCode.length) {
-                        showToast('🎮 Konami Code activated! You are a true gamer!');
-                        document.body.classList.add('konami-activated');
-                        setTimeout(() => {
-                            document.body.classList.remove('konami-activated');
-                        }, 5000);
-                        konamiIndex = 0;
-                    }
-                } else {
-                    konamiIndex = 0;
-                }
-            });
-        }
-        
-        // Mobile touch gestures
-        function initTouchGestures() {
-            let touchStartY = 0;
-            let touchStartTime = 0;
-            
-            document.addEventListener('touchstart', (e) => {
-                touchStartY = e.touches[0].clientY;
-                touchStartTime = Date.now();
-            });
-            
-            document.addEventListener('touchend', (e) => {
-                const touchEndY = e.changedTouches[0].clientY;
-                const touchDuration = Date.now() - touchStartTime;
-                const touchDistance = Math.abs(touchEndY - touchStartY);
-                
-                // Long press detection
-                if (touchDuration > 1000 && touchDistance < 10) {
-                    const target = e.target.closest('.easter-egg');
-                    if (target && target.id === 'profile-pic') {
-                        showToast('Long press detected! You found a secret gesture! 🤫');
-                    }
-                }
-            });
-        }
-        
-        // Performance optimization for mobile
-        function optimizeForMobile() {
-            // Reduce animations on low-end devices
-            if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
-                document.documentElement.style.setProperty('--animation-duration', '0.2s');
-            }
-            
-            // Lazy load heavy animations
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (prefersReducedMotion) {
-                document.documentElement.classList.add('reduce-motion');
-            }
-        }
-        
-        // Initialize everything when DOM loads
-        document.addEventListener('DOMContentLoaded', () => {
-            initTheme();
-            initEasterEggs();
-            initMusicBars();
-            initScrollAnimations();
-            initKonamiCode();
-            initTouchGestures();
-            optimizeForMobile();
-            
-            // Start typing animation
-            setTimeout(typeWriter, 1000);
-            
-            // Start code animation when visible
-            const codeSection = document.getElementById('about');
-            const codeObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCode();
-                        codeObserver.unobserve(entry.target);
-                    }
-                });
-            });
-            codeObserver.observe(codeSection);
-            
-            // Scroll indicator
-            window.addEventListener('scroll', updateScrollIndicator);
-            
-            // Add bounce animation to elements on load
-            setTimeout(() => {
-                document.querySelectorAll('.bounce-in').forEach(el => {
-                    el.classList.add('bounce-in');
-                });
-            }, 500);
-            
-            // Welcome message
-            setTimeout(() => {
-                showToast('Welcome to my digital world! 🌟', 'success');
-            }, 2000);
-        });
-        
-        // Add some fun random interactions
-        setInterval(() => {
-            const floatingElements = document.querySelectorAll('.floating');
-            floatingElements.forEach(el => {
-                if (Math.random() > 0.7) {
-                    el.style.transform = `translateY(${Math.random() * 20 - 10}px)`;
-                    setTimeout(() => {
-                        el.style.transform = '';
-                    }, 1000);
-                }
-            });
-        }, 5000);
-        
-        // Social button ripple effect
-        document.querySelectorAll('.social-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.classList.add('absolute', 'bg-white', 'bg-opacity-25', 'rounded-full', 'animate-ping');
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
-        
-        // Add some CSS for reduce motion
-        const reduceMotionCSS = `
-            .reduce-motion * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        `;
-        
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = reduceMotionCSS;
-        document.head.appendChild(styleSheet);
-        
-        // Make sure everything is accessible
-        document.querySelectorAll('button, a, .easter-egg').forEach(el => {
-            if (!el.getAttribute('tabindex')) {
-                el.setAttribute('tabindex', '0');
-            }
-            
-            // Add keyboard support for easter eggs
-            el.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    el.click();
-                }
-            });
-        });
-    </script>
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator" style="transform: scaleX(0);"></div>
+
+<!-- Theme Button -->
+<div class="fixed top-4 right-4 z-50">
+<button id="theme-btn" class="glass-effect p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110">
+<i class="fas fa-palette text-xl" style="color: var(--primary);"></i>
+</button>
+</div>
+
+<!-- Theme Modal -->
+<div id="theme-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
+<div class="glass-effect p-6 rounded-2xl max-w-sm w-full">
+<h3 class="text-lg font-bold mb-4">Choose Theme</h3>
+<div class="space-y-3">
+<button class="theme-option w-full p-3 rounded-lg text-left transition-all duration-300" data-theme="system">
+<i class="fas fa-desktop mr-3"></i> System Default
+</button>
+<button class="theme-option w-full p-3 rounded-lg text-left transition-all duration-300" data-theme="light">
+<i class="fas fa-sun mr-3"></i> Light Mode
+</button>
+<button class="theme-option w-full p-3 rounded-lg text-left transition-all duration-300" data-theme="dark">
+<i class="fas fa-moon mr-3"></i> Dark Mode
+</button>
+<button class="theme-option w-full p-3 rounded-lg text-left transition-all duration-300" data-theme="colorful">
+<i class="fas fa-rainbow mr-3"></i> Colorful
+</button>
+</div>
+</div>
+</div>
+
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 relative">
+<div class="text-center md:text-left max-w-4xl">
+<div class="bounce-in">
+<div class="relative inline-block mb-6">
+<img src="https://github.com/0xArjit.png" alt="Arjit" class="w-32 h-32 rounded-full mx-auto md:mx-0 shadow-xl border-4 border-white/20 easter-egg" id="profile-pic">
+<div class="absolute -inset-2 rounded-full border-2 border-dashed opacity-30 pulse-ring" style="border-color: var(--primary);"></div>
+</div>
+<h1 class="text-5xl md:text-7xl font-bold gradient-text mb-4">0x<span class="easter-egg" id="name-easter">Arjit</span></h1>
+<div class="text-xl md:text-2xl text-secondary mb-2">
+<span id="typing-text" class="typing-effect"></span>
+</div>
+<p class="text-lg opacity-80 mb-8 max-w-2xl mx-auto md:mx-0">
+17-year-old developer from <span class="easter-egg gradient-text font-semibold" id="location-easter">Pakur, Jharkhand 🇮🇳</span>
+<br>Turning caffeine into code, one bug at a time ☕
+</p>
+<div class="flex justify-center md:justify-start">
+<button onclick="scrollToSection('about')" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+Explore My World
+</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 px-4">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text slide-up">About Me</h2>
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="slide-up">
+<div class="code-block mb-8">
+<div class="flex items-center mb-2">
+<div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+<div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+<div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+<span class="ml-2 text-gray-400">about_arjit.cpp</span>
+</div>
+<pre class="text-sm" id="code-animation"></pre>
+</div>
+</div>
+<div class="slide-up space-y-6">
+<div class="glass-effect p-6 rounded-2xl">
+<h3 class="text-2xl font-bold mb-4 gradient-text">The Human Behind The Code</h3>
+<p class="text-lg opacity-90 leading-relaxed">
+Hey there! I'm a 17-year-old coding enthusiast who believes that the best programs are written with passion, 
+a good playlist, and way too much coffee. When I'm not debugging my life choices, you'll find me gaming 
+or discovering new music that makes my code compile faster (it's science, trust me! 🤓).
+</p>
+</div>
+<div class="glass-effect p-6 rounded-2xl">
+<h3 class="text-xl font-bold mb-3">Fun Facts</h3>
+<div class="space-y-2">
+<div class="flex items-center">
+<i class="fas fa-code mr-3 text-green-400"></i>
+<span>I dream in C++ and wake up debugging</span>
+</div>
+<div class="flex items-center">
+<i class="fas fa-gamepad mr-3 text-blue-400"></i>
+<span>My KDA in games &gt; My commit frequency</span>
+</div>
+<div class="flex items-center">
+<i class="fas fa-music mr-3 text-purple-400"></i>
+<span>Music = Code fuel ⛽</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Hobbies Section -->
+<section id="hobbies" class="py-20 px-4">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">My Passions</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="glass-effect p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 easter-egg" id="coding-card">
+<div class="text-6xl mb-4">💻</div>
+<h3 class="text-2xl font-bold mb-4 gradient-text">Coding</h3>
+<p class="opacity-90 mb-4">Crafting digital magic with C++, Python, and whatever language doesn't make me cry.</p>
+<div class="code-block text-xs">
+if (coding == life) {<br>&nbsp;&nbsp;happiness = true;<br>}
+</div>
+</div>
+<div class="glass-effect p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 easter-egg" id="gaming-card">
+<div class="text-6xl mb-4">🎮</div>
+<h3 class="text-2xl font-bold mb-4 gradient-text">Gaming</h3>
+<p class="opacity-90 mb-4">Professional button masher and amateur rage-quitter. Currently accepting sponsorships from energy drink companies.</p>
+</div>
+<div class="glass-effect p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 easter-egg" id="music-card">
+<div class="text-6xl mb-4">🎵</div>
+<h3 class="text-2xl font-bold mb-4 gradient-text">Music</h3>
+<p class="opacity-90 mb-4">Beats and algorithms fuel my brain. If it compiles and it grooves, it's perfect.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Social Section -->
+<section id="social" class="py-20 px-4 bg-surface">
+<div class="max-w-6xl mx-auto text-center">
+<h2 class="text-4xl md:text-5xl font-bold mb-12 gradient-text">Connect with Me</h2>
+<div class="flex flex-wrap justify-center gap-6">
+<a href="https://github.com/0xArjit" target="_blank" class="social-btn glass-effect p-4 rounded-full hover:scale-110">
+<i class="fab fa-github text-2xl"></i>
+</a>
+<a href="https://twitter.com/0xArjit" target="_blank" class="social-btn glass-effect p-4 rounded-full hover:scale-110">
+<i class="fab fa-twitter text-2xl"></i>
+</a>
+<a href="https://linkedin.com/in/0xArjit" target="_blank" class="social-btn glass-effect p-4 rounded-full hover:scale-110">
+<i class="fab fa-linkedin text-2xl"></i>
+</a>
+<a href="mailto:0xArjit@example.com" class="social-btn glass-effect p-4 rounded-full hover:scale-110">
+<i class="fas fa-envelope text-2xl"></i>
+</a>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 px-4 text-center text-secondary text-sm">
+Made with ❤️ by 0xArjit | 2025
+</footer>
+
+<script>
+// Typing effect
+const texts = ["Developer", "Gamer", "Music Lover", "Coder"];
+let i=0, j=0, currentText='', isDeleting=false;
+const typingEl=document.getElementById('typing-text');
+function type(){
+if(i>=texts.length)i=0;
+currentText=texts[i];
+typingEl.innerHTML=isDeleting?currentText.substring(0,j--):currentText.substring(0,j++);
+if(!isDeleting && j>currentText.length){isDeleting=true;j=currentText.length;}
+if(isDeleting && j<0){isDeleting=false;i++;j=0;}
+setTimeout(type,isDeleting?50:150);
+}
+type();
+
+// Scroll to section
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+
+// Theme modal
+const themeBtn=document.getElementById('theme-btn');
+const themeModal=document.getElementById('theme-modal');
+themeBtn.onclick=()=>themeModal.classList.toggle('hidden');
+document.querySelectorAll('.theme-option').forEach(btn=>{
+btn.onclick=()=>{
+document.body.setAttribute('data-theme',btn.getAttribute('data-theme'));
+themeModal.classList.add('hidden');
+};
+});
+
+// Scroll indicator
+window.addEventListener('scroll',()=>{const scroll=document.querySelector('.scroll-indicator');const scrolled=window.scrollY/(document.body.scrollHeight-window.innerHeight);scroll.style.transform=`scaleX(${scrolled})`;});
+</script>
+
 </body>
 </html>
