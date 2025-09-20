@@ -1,737 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arjit Jha - Developer & Gamer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'roboto': ['Roboto', 'sans-serif'],
-                    },
-                    colors: {
-                        'custom-dark': '#0a0a0a',
-                        'custom-darker': '#050505',
-                        'github-dark': '#0d1117',
-                        'github-border': '#21262d',
-                        'oceanic': '#1e3a8a',
-                        'oceanic-light': '#3b82f6',
-                        'sunset': '#f97316',
-                        'sunset-light': '#fb923c',
-                        'forest': '#059669',
-                        'forest-light': '#10b981',
-                        'purple-theme': '#7c3aed',
-                        'purple-light': '#8b5cf6',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                        'fade-in': 'fadeIn 1s ease-out',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(100px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0px)', opacity: '1' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arjit Jha | Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config for smooth scrolling and dark/light theme
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Roboto', 'sans-serif'],
+          },
+          colors: {
+            'material-light': '#f5f5f5',
+            'material-dark': '#121212',
+            'github-dark': '#0d1117',
+            'accent': '#6366f1',
+          }
         }
-    </script>
+      },
+      darkMode: 'media' // automatically detects system theme
+    }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://avatars.githubusercontent.com/0xArjit" type="image/png">
 </head>
-<body class="font-roboto transition-all duration-500 overflow-x-hidden" id="body">
-    
-    <!-- Theme Selector -->
-    <div class="fixed top-4 right-4 z-50">
-        <div class="relative">
-            <button id="theme-btn" class="w-12 h-12 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 hover:scale-110 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H4zm0 2h12v11H4V4z" clip-rule="evenodd"/>
-                </svg>
-            </button>
-            <div id="theme-menu" class="absolute right-0 mt-2 py-2 w-48 rounded-lg shadow-xl backdrop-blur-md border hidden">
-                <button class="theme-option w-full px-4 py-2 text-left hover:bg-opacity-20 hover:bg-gray-500 transition-colors" data-theme="auto">
-                    <span class="flex items-center gap-3">
-                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-yellow-400 to-gray-800"></div>
-                        Auto (System)
-                    </span>
-                </button>
-                <button class="theme-option w-full px-4 py-2 text-left hover:bg-opacity-20 hover:bg-gray-500 transition-colors" data-theme="light">
-                    <span class="flex items-center gap-3">
-                        <div class="w-4 h-4 rounded-full bg-white border-2 border-gray-300"></div>
-                        Light Mode
-                    </span>
-                </button>
-                <button class="theme-option w-full px-4 py-2 text-left hover:bg-opacity-20 hover:bg-gray-500 transition-colors" data-theme="dark">
-                    <span class="flex items-center gap-3">
-                        <div class="w-4 h-4 rounded-full bg-gray-900"></div>
-                        Dark Mode
-                    </span>
-                </button>
-                <button class="theme-option w-full px-4 py-2 text-left hover:bg-opacity-20 hover:bg-gray-500 transition-colors" data-theme="oceanic">
-                    <span class="flex items-center gap-3">
-                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-800"></div>
-                        Oceanic Blue
-                    </span>
-                </button>
-                <button class="theme-option w-full px-4 py-2 text-left hover:bg-opacity-20 hover:bg-gray-500 transition-colors" data-theme="sunset">
-                    <span class="flex items-center gap-3">
-                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-orange-500 to-red-600"></div>
-                        Sunset Orange
-                    </span>
-                </button>
-                <button class="theme-option w-full px-4 py-2 text-left hover:bg-opacity-20 hover:bg-gray-500 transition-colors" data-theme="forest">
-                    <span class="flex items-center gap-3">
-                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-green-500 to-emerald-600"></div>
-                        Forest Green
-                    </span>
-                </button>
-                <button class="theme-option w-full px-4 py-2 text-left hover:bg-opacity-20 hover:bg-gray-500 transition-colors" data-theme="purple">
-                    <span class="flex items-center gap-3">
-                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-purple-500 to-violet-600"></div>
-                        Purple Haze
-                    </span>
-                </button>
-            </div>
-        </div>
+<body class="bg-material-light dark:bg-material-dark text-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
+
+  <!-- Header / Navbar -->
+  <header class="fixed w-full backdrop-blur-md bg-white/30 dark:bg-gray-900/30 z-50 shadow-sm">
+    <div class="max-w-6xl mx-auto flex justify-between items-center py-4 px-6">
+      <a href="#home" class="font-bold text-xl text-accent">Arjit Jha</a>
+      <nav class="space-x-6">
+        <a href="#home" class="hover:text-accent transition">Home</a>
+        <a href="#about" class="hover:text-accent transition">About</a>
+        <a href="#hobbies" class="hover:text-accent transition">Hobbies</a>
+        <a href="#contact" class="hover:text-accent transition">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full backdrop-blur-md z-40 border-b transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-                        <span class="text-white font-bold text-sm">A</span>
-                    </div>
-                    <span class="text-lg font-semibold">Arjit</span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link hover:scale-105 transition-all duration-200 px-3 py-2 rounded-lg">Home</a>
-                    <a href="#about" class="nav-link hover:scale-105 transition-all duration-200 px-3 py-2 rounded-lg">About</a>
-                    <a href="#hobbies" class="nav-link hover:scale-105 transition-all duration-200 px-3 py-2 rounded-lg">Hobbies</a>
-                    <a href="#contact" class="nav-link hover:scale-105 transition-all duration-200 px-3 py-2 rounded-lg">Contact</a>
-                </div>
+  <!-- Home Section -->
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4">
+    <!-- Profile picture -->
+    <img src="https://avatars.githubusercontent.com/0xArjit" alt="Arjit Jha" class="w-40 h-40 rounded-full shadow-lg mb-6 border-4 border-accent animate-fadeIn">
+    
+    <!-- Name & Tagline -->
+    <h1 class="text-4xl md:text-5xl font-bold mb-2 animate-fadeIn">Arjit Jha</h1>
+    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 animate-fadeIn delay-150">Just a chill coder. Coding for fun and gaming breaks.</p>
+    
+    <!-- C++ code snippet -->
+    <pre class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-6 py-4 rounded-lg shadow-lg w-full md:w-2/3 mb-6 animate-fadeIn delay-300 overflow-x-auto">
+<code>// int main() { 
+    code(); 
+    chill(); 
+    return 0; 
+}</code>
+    </pre>
 
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden mobile-menu-btn">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div class="md:hidden mobile-menu hidden pb-4">
-                <div class="flex flex-col space-y-2">
-                    <a href="#home" class="nav-link block px-3 py-2 rounded-lg">Home</a>
-                    <a href="#about" class="nav-link block px-3 py-2 rounded-lg">About</a>
-                    <a href="#hobbies" class="nav-link block px-3 py-2 rounded-lg">Hobbies</a>
-                    <a href="#contact" class="nav-link block px-3 py-2 rounded-lg">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- Social links -->
+    <div class="flex space-x-6 text-gray-700 dark:text-gray-300 text-2xl animate-fadeIn delay-450">
+      <a href="https://github.com/0xArjit" target="_blank" class="hover:text-accent transition">
+        <!-- GitHub Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.387.6.113.793-.262.793-.582 0-.288-.01-1.05-.016-2.06-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.304.762-1.604-2.665-.3-5.466-1.334-5.466-5.933 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.52.117-3.17 0 0 1.008-.322 3.3 1.23.957-.266 1.984-.398 3.003-.403 1.02.005 2.047.137 3.006.403 2.288-1.552 3.294-1.23 3.294-1.23.656 1.65.244 2.867.12 3.17.77.84 1.234 1.91 1.234 3.22 0 4.61-2.804 5.63-5.475 5.922.43.37.813 1.1.813 2.222 0 1.606-.014 2.9-.014 3.293 0 .322.192.698.8.58C20.565 21.795 24 17.296 24 12c0-6.63-5.373-12-12-12z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/arjit.xyz" target="_blank" class="hover:text-accent transition">
+        <!-- Instagram Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5C19.216 2 22 4.784 22 7.75v8.5C22 19.216 19.216 22 16.25 22h-8.5C4.784 22 2 19.216 2 16.25v-8.5C2 4.784 4.784 2 7.75 2zm0 1.5C5.679 3.5 4 5.179 4 7.25v8.5C4 19.321 5.679 21 7.75 21h8.5c2.071 0 3.75-1.679 3.75-3.75v-8.5C20 5.679 18.321 3.5 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm4.75-.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+      </a>
+      <a href="https://t.me/ThisIsARJ" target="_blank" class="hover:text-accent transition">
+        <!-- Telegram Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M9.04 15.5l-.36 5.3c.514 0 .735-.22 1.014-.487l2.43-2.32 5.034 3.68c.922.508 1.582.24 1.826-.857L23.98 4.78c.318-1.39-.514-1.99-1.365-1.624L2.75 10.5c-1.354.52-1.34 1.25-.23 1.596l5.71 1.786 13.26-8.34-11.788 9.02z"/></svg>
+      </a>
+      <a href="mailto:arjitjha47@gmail.com" class="hover:text-accent transition">
+        <!-- Email Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 13.065L1.5 6v12h21V6l-10.5 7.065zm0-2.13L21 6H3l9 4.935z"/></svg>
+      </a>
+    </div>
+  </section>
 
-    <!-- Home Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
-        <div class="max-w-4xl mx-auto text-center">
-            <!-- Profile Image -->
-            <div class="mb-8 animate-fade-in">
-                <div class="relative inline-block">
-                    <img src="https://github.com/0xArjit.png" alt="Arjit Jha" 
-                         class="w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40 rounded-full mx-auto shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 animate-float border-4 border-opacity-20">
-                    <div class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center shadow-lg">
-                        <span class="text-lg">🎮</span>
-                    </div>
-                </div>
-            </div>
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 max-w-5xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center text-accent">About Me</h2>
+    
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="mb-4">Hey! I'm <strong>Arjit Jha</strong>, a 17-year-old coder from <strong>Pakur, Jharkhand, India</strong>. I love exploring code, creating small projects, and enjoying some gaming downtime.</p>
+        <p class="mb-4">My hobbies revolve around coding challenges, learning new algorithms, and immersing myself in gaming worlds.</p>
+        <p class="mb-4">Here are some C++ vibes that define my style:</p>
+        <pre class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-6 py-4 rounded-lg shadow-lg overflow-x-auto">
+<code>// int main() { enjoyLife(); code(); }
+// while(alive) { chill(); sipCoffee(); }
+// std::cout << "Code is life!";</code>
+        </pre>
+      </div>
+      <div class="flex justify-center">
+        <img src="https://avatars.githubusercontent.com/0xArjit" alt="Arjit Jha" class="w-72 h-72 rounded-xl shadow-lg">
+      </div>
+    </div>
+  </section>
 
-            <!-- Main Content -->
-            <div class="space-y-6 animate-slide-up">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
-                    <span class="block">Arjit Jha</span>
-                </h1>
-                
-                <p class="text-lg sm:text-xl lg:text-2xl opacity-80 max-w-2xl mx-auto leading-relaxed">
-                    Just a chill coder from Pakur 🏔️<br>
-                    <span class="text-base sm:text-lg">Coding for fun and gaming breaks ☕</span>
-                </p>
+  <!-- Hobbies Section -->
+  <section id="hobbies" class="py-20 px-6 bg-gray-50 dark:bg-gray-900">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center text-accent">Hobbies</h2>
+    
+    <div class="max-w-4xl mx-auto space-y-6 text-center">
+      <p>Coding keeps me creative and problem-solving, while gaming is my way to chill and refresh.</p>
+      <p>Some C++ inspired thoughts while I enjoy my hobbies:</p>
+      <pre class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-6 py-4 rounded-lg shadow-lg overflow-x-auto">
+<code>// for(auto day : life) { code(); play(); }
+// if(chill) { game(); }
+// while(alive) { coffee(); code(); }</code>
+      </pre>
+    </div>
+  </section>
 
-                <!-- Code Snippet -->
-                <div class="mt-8 max-w-md mx-auto">
-                    <div class="rounded-xl shadow-lg backdrop-blur-sm border border-opacity-20 overflow-hidden">
-                        <div class="flex items-center justify-between px-4 py-3 border-b border-opacity-10">
-                            <div class="flex space-x-2">
-                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                            </div>
-                            <span class="text-xs opacity-60">main.cpp</span>
-                        </div>
-                        <div class="p-4 font-mono text-sm text-left">
-                            <div class="space-y-1">
-                                <div class="text-green-400">// Life philosophy in C++</div>
-                                <div><span class="text-purple-400">int</span> <span class="text-blue-400">main</span>() {</div>
-                                <div class="ml-4"><span class="text-cyan-400">code</span>();</div>
-                                <div class="ml-4"><span class="text-yellow-400">chill</span>();</div>
-                                <div class="ml-4"><span class="text-orange-400">return</span> <span class="text-red-400">0</span>;</div>
-                                <div>}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6 max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center text-accent">Contact Me</h2>
+    
+    <p class="text-center mb-6">Feel free to connect with me through any of the platforms below:</p>
+    
+    <div class="flex justify-center space-x-8 text-3xl text-gray-700 dark:text-gray-300 mb-6">
+      <a href="https://github.com/0xArjit" target="_blank" class="hover:text-accent transition">GitHub</a>
+      <a href="https://www.instagram.com/arjit.xyz" target="_blank" class="hover:text-accent transition">Instagram</a>
+      <a href="https://t.me/ThisIsARJ" target="_blank" class="hover:text-accent transition">Telegram</a>
+      <a href="mailto:arjitjha47@gmail.com" class="hover:text-accent transition">Email</a>
+    </div>
+    
+    <pre class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-6 py-4 rounded-lg shadow-lg overflow-x-auto text-center">
+<code>// std::cout << "Feel free to connect!";</code>
+    </pre>
+  </section>
 
-                <!-- Social Links -->
-                <div class="flex justify-center items-center gap-4 sm:gap-6 pt-8">
-                    <a href="https://github.com/0xArjit" target="_blank" 
-                       class="social-icon p-3 sm:p-4 rounded-full backdrop-blur-md border border-opacity-20 hover:scale-110 hover:-translate-y-1 transition-all duration-300 group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                        <span class="sr-only">GitHub</span>
-                    </a>
-                    
-                    <a href="https://www.instagram.com/arjit.xyz" target="_blank" 
-                       class="social-icon p-3 sm:p-4 rounded-full backdrop-blur-md border border-opacity-20 hover:scale-110 hover:-translate-y-1 transition-all duration-300 group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                        <span class="sr-only">Instagram</span>
-                    </a>
+  <!-- Footer -->
+  <footer class="py-6 text-center text-gray-500 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700">
+    &copy; 2025 Arjit Jha. All rights reserved.
+  </footer>
 
-                    <a href="https://t.me/ThisIsARJ" target="_blank" 
-                       class="social-icon p-3 sm:p-4 rounded-full backdrop-blur-md border border-opacity-20 hover:scale-110 hover:-translate-y-1 transition-all duration-300 group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                        </svg>
-                        <span class="sr-only">Telegram</span>
-                    </a>
+  <!-- Animations -->
+  <style>
+    @keyframes fadeIn { from {opacity:0; transform: translateY(10px);} to {opacity:1; transform: translateY(0);} }
+    .animate-fadeIn { animation: fadeIn 1s ease forwards; }
+    .delay-150 { animation-delay: 0.15s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-450 { animation-delay: 0.45s; }
+  </style>
 
-                    <a href="mailto:arjitjha47@gmail.com" 
-                       class="social-icon p-3 sm:p-4 rounded-full backdrop-blur-md border border-opacity-20 hover:scale-110 hover:-translate-y-1 transition-all duration-300 group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                        <span class="sr-only">Email</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-16">About Me</h2>
-            
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Personal Info -->
-                <div class="space-y-8">
-                    <div class="backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-opacity-20 shadow-xl">
-                        <h3 class="text-xl sm:text-2xl font-semibold mb-6 flex items-center gap-3">
-                            <span class="text-2xl">👤</span>
-                            Personal Details
-                        </h3>
-                        <div class="space-y-4 text-base sm:text-lg">
-                            <div class="flex items-center gap-4">
-                                <span class="text-xl">🎂</span>
-                                <span><strong>Age:</strong> 17 years old</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <span class="text-xl">📍</span>
-                                <span><strong>Location:</strong> Pakur, Jharkhand, India</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <span class="text-xl">💻</span>
-                                <span><strong>Languages:</strong> C++, JavaScript, Python</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <span class="text-xl">🎯</span>
-                                <span><strong>Focus:</strong> Full-stack Development & Gaming</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-opacity-20 shadow-xl">
-                        <h3 class="text-xl font-semibold mb-4">What I'm up to</h3>
-                        <p class="text-base sm:text-lg leading-relaxed opacity-90">
-                            Currently diving deep into modern web technologies while balancing my love for competitive gaming. 
-                            I believe the best code comes from a relaxed mind, so I make sure to take plenty of gaming breaks! 🎮
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Code Snippets -->
-                <div class="space-y-6">
-                    <div class="backdrop-blur-md rounded-xl border border-opacity-20 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="px-4 py-3 border-b border-opacity-10 flex items-center justify-between">
-                            <div class="flex space-x-2">
-                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                            </div>
-                            <span class="text-xs opacity-60">life.cpp</span>
-                        </div>
-                        <div class="p-4 font-mono text-sm">
-                            <div class="text-green-400">// My daily routine</div>
-                            <div><span class="text-purple-400">int</span> <span class="text-blue-400">main</span>() {</div>
-                            <div class="ml-4"><span class="text-cyan-400">enjoyLife</span>();</div>
-                            <div class="ml-4"><span class="text-yellow-400">code</span>();</div>
-                            <div class="ml-4"><span class="text-orange-400">return</span> <span class="text-red-400">happiness</span>;</div>
-                            <div>}</div>
-                        </div>
-                    </div>
-
-                    <div class="backdrop-blur-md rounded-xl border border-opacity-20 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="px-4 py-3 border-b border-opacity-10 flex items-center justify-between">
-                            <div class="flex space-x-2">
-                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                            </div>
-                            <span class="text-xs opacity-60">mindset.cpp</span>
-                        </div>
-                        <div class="p-4 font-mono text-sm">
-                            <div class="text-green-400">// Philosophy of a chill coder</div>
-                            <div><span class="text-purple-400">while</span>(<span class="text-cyan-400">alive</span>) {</div>
-                            <div class="ml-4"><span class="text-yellow-400">chill</span>();</div>
-                            <div class="ml-4"><span class="text-orange-400">sipCoffee</span>();</div>
-                            <div class="ml-4"><span class="text-blue-400">createAwesomeStuff</span>();</div>
-                            <div>}</div>
-                        </div>
-                    </div>
-
-                    <div class="backdrop-blur-md rounded-xl border border-opacity-20 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="px-4 py-3 border-b border-opacity-10 flex items-center justify-between">
-                            <div class="flex space-x-2">
-                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                            </div>
-                            <span class="text-xs opacity-60">motivation.cpp</span>
-                        </div>
-                        <div class="p-4 font-mono text-sm">
-                            <div class="text-blue-400">std::cout</div>
-                            <div class="ml-4"><span class="text-green-400"><< "Code is life! 💻"</span>;</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Hobbies Section -->
-    <section id="hobbies" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-16">What I Love Doing</h2>
-            
-            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
-                <!-- Coding Card -->
-                <div class="backdrop-blur-md rounded-2xl p-8 border border-opacity-20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group">
-                    <div class="text-center mb-8">
-                        <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl group-hover:animate-bounce">
-                            💻
-                        </div>
-                        <h3 class="text-2xl sm:text-3xl font-bold mb-4">Coding</h3>
-                        <p class="text-base sm:text-lg opacity-90 leading-relaxed">
-                            There's something magical about turning coffee and late-night ideas into working code. 
-                            I love the problem-solving aspect and the satisfaction of clean, efficient solutions.
-                        </p>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div class="backdrop-blur-sm rounded-lg p-4 border border-opacity-10">
-                            <div class="font-mono text-sm">
-                                <span class="text-green-400">// Daily coding mantra</span><br>
-                                <span class="text-purple-400">for</span>(<span class="text-cyan-400">auto day</span> : <span class="text-yellow-400">life</span>) {<br>
-                                <span class="ml-4"><span class="text-orange-400">code</span>();</span><br>
-                                <span class="ml-4"><span class="text-blue-400">play</span>();</span><br>
-                                <span class="ml-4"><span class="text-pink-400">repeat</span>();</span><br>
-                                }
-                            </div>
-                        </div>
-                        
-                        <div class="backdrop-blur-sm rounded-lg p-4 border border-opacity-10">
-                            <div class="font-mono text-sm">
-                                <span class="text-green-400">// Coffee-driven development</span><br>
-                                <span class="text-purple-400">while</span>(<span class="text-cyan-400">alive</span>) {<br>
-                                <span class="ml-4"><span class="text-yellow-400">coffee</span>();</span><br>
-                                <span class="ml-4"><span class="text-orange-400">code</span>();</span><br>
-                                <span class="ml-4"><span class="text-blue-400">debug</span>();</span><br>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gaming Card -->
-                <div class="backdrop-blur-md rounded-2xl p-8 border border-opacity-20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group">
-                    <div class="text-center mb-8">
-                        <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl group-hover:animate-bounce">
-                            🎮
-                        </div>
-                        <h3 class="text-2xl sm:text-3xl font-bold mb-4">Gaming</h3>
-                        <p class="text-base sm:text-lg opacity-90 leading-relaxed">
-                            Gaming isn't just entertainment for me – it's inspiration. Every game teaches me something new about 
-                            user experience, problem-solving, and creative thinking. Plus, it's the perfect way to unwind after coding sessions.
-                        </p>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div class="backdrop-blur-sm rounded-lg p-4 border border-opacity-10">
-                            <div class="font-mono text-sm">
-                                <span class="text-green-400">// Gaming philosophy</span><br>
-                                <span class="text-purple-400">if</span>(<span class="text-cyan-400">needBreak</span>) {<br>
-                                <span class="ml-4"><span class="text-orange-400">game</span>();</span><br>
-                                <span class="ml-4"><span class="text-yellow-400">recharge</span>();</span><br>
-                                <span class="ml-4"><span class="text-blue-400">getInspired</span>();</span><br>
-                                }
-                            </div>
-                        </div>
-                        
-                        <div class="backdrop-blur-sm rounded-lg p-4 border border-opacity-10">
-                            <div class="font-mono text-sm">
-                                <span class="text-green-400">// Level up mentality</span><br>
-                                <span class="text-blue-400">std::cout</span> << <span class="text-green-400">"GG, ready for next round!"</span>;
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fun Stats -->
-            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="text-center backdrop-blur-md rounded-xl p-6 border border-opacity-20 shadow-lg">
-                    <div class="text-2xl sm:text-3xl font-bold mb-2">17</div>
-                    <div class="text-sm opacity-80">Years Old</div>
-                </div>
-                <div class="text-center backdrop-blur-md rounded-xl p-6 border border-opacity-20 shadow-lg">
-                    <div class="text-2xl sm:text-3xl font-bold mb-2">∞</div>
-                    <div class="text-sm opacity-80">Lines of Code</div>
-                </div>
-                <div class="text-center backdrop-blur-md rounded-xl p-6 border border-opacity-20 shadow-lg">
-                    <div class="text-2xl sm:text-3xl font-bold mb-2">☕</div>
-                    <div class="text-sm opacity-80">Coffee Cups</div>
-                </div>
-                <div class="text-center backdrop-blur-md rounded-xl p-6 border border-opacity-20 shadow-lg">
-                    <div class="text-2xl sm:text-3xl font-bold mb-2">🎯</div>
-                    <div class="text-sm opacity-80">Goals Achieved</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8">Let's Connect!</h2>
-            
-            <div class="mb-12">
-                <div class="backdrop-blur-md rounded-xl border border-opacity-20 p-6 max-w-lg mx-auto shadow-lg">
-                    <div class="font-mono text-sm">
-                        <span class="text-green-400">// Always open to new connections</span><br>
-                        <span class="text-blue-400">std::cout</span> << <span class="text-green-400">"Feel free to reach out! 👋"</span>;
-                    </div>
-                </div>
-            </div>
-
-            <p class="text-lg sm:text-xl opacity-90 mb-12 leading-relaxed">
-                Whether you want to discuss code, gaming, or just chat about life – 
-                I'm always up for a good conversation. Drop me a message on any platform below!
-            </p>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                <!-- GitHub -->
-                <a href="https://github.com/0xArjit" target="_blank" 
-                   class="group backdrop-blur-md rounded-2xl p-6 border border-opacity-20 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-                    <div class="flex flex-col items-center space-y-4">
-                        <div class="w-16 h-16 rounded-full bg-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg">GitHub</h3>
-                            <p class="text-sm opacity-80">@0xArjit</p>
-                            <p class="text-xs opacity-60 mt-2">Check out my repos</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/arjit.xyz" target="_blank" 
-                   class="group backdrop-blur-md rounded-2xl p-6 border border-opacity-20 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-                    <div class="flex flex-col items-center space-y-4">
-                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg">Instagram</h3>
-                            <p class="text-sm opacity-80">@arjit.xyz</p>
-                            <p class="text-xs opacity-60 mt-2">Daily life & coding</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Telegram -->
-                <a href="https://t.me/ThisIsARJ" target="_blank" 
-                   class="group backdrop-blur-md rounded-2xl p-6 border border-opacity-20 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-                    <div class="flex flex-col items-center space-y-4">
-                        <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg">Telegram</h3>
-                            <p class="text-sm opacity-80">@ThisIsARJ</p>
-                            <p class="text-xs opacity-60 mt-2">Quick chats</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Email -->
-                <a href="mailto:arjitjha47@gmail.com" 
-                   class="group backdrop-blur-md rounded-2xl p-6 border border-opacity-20 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-                    <div class="flex flex-col items-center space-y-4">
-                        <div class="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg">Email</h3>
-                            <p class="text-sm opacity-80 break-all">arjitjha47@gmail.com</p>
-                            <p class="text-xs opacity-60 mt-2">Professional inquiries</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Fun Footer -->
-            <div class="text-center pt-8 border-t border-opacity-20">
-                <p class="text-base opacity-80 mb-4">
-                    Made with ☕ and lots of 🎮 breaks by Arjit
-                </p>
-                <div class="backdrop-blur-md rounded-lg p-4 max-w-md mx-auto border border-opacity-10">
-                    <div class="font-mono text-sm">
-                        <span class="text-green-400">// Thanks for visiting!</span><br>
-                        <span class="text-blue-400">std::cout</span> << <span class="text-green-400">"Hope we connect soon! 🚀"</span>;
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Theme Management
-        const themes = {
-            auto: {
-                name: 'Auto (System)',
-                apply: () => {
-                    document.documentElement.classList.remove('dark', 'oceanic', 'sunset', 'forest', 'purple');
-                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                        document.documentElement.classList.add('dark');
-                    }
-                }
-            },
-            light: {
-                name: 'Light Mode',
-                apply: () => {
-                    document.documentElement.classList.remove('dark', 'oceanic', 'sunset', 'forest', 'purple');
-                    document.body.className = 'font-roboto transition-all duration-500 overflow-x-hidden bg-gray-50 text-gray-900';
-                    document.getElementById('navbar').className = 'fixed top-0 w-full backdrop-blur-md z-40 border-b transition-all duration-300 bg-white/80 border-gray-200 text-gray-900';
-                    document.getElementById('theme-btn').className = 'w-12 h-12 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 hover:scale-110 flex items-center justify-center bg-white/80 border-gray-200 text-gray-900';
-                    document.getElementById('theme-menu').className = 'absolute right-0 mt-2 py-2 w-48 rounded-lg shadow-xl backdrop-blur-md border hidden bg-white/90 border-gray-200 text-gray-900';
-                }
-            },
-            dark: {
-                name: 'Dark Mode',
-                apply: () => {
-                    document.documentElement.classList.remove('oceanic', 'sunset', 'forest', 'purple');
-                    document.documentElement.classList.add('dark');
-                    document.body.className = 'font-roboto transition-all duration-500 overflow-x-hidden bg-github-dark text-gray-100';
-                    document.getElementById('navbar').className = 'fixed top-0 w-full backdrop-blur-md z-40 border-b transition-all duration-300 bg-github-dark/80 border-gray-700 text-gray-100';
-                    document.getElementById('theme-btn').className = 'w-12 h-12 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 hover:scale-110 flex items-center justify-center bg-github-dark/80 border-gray-700 text-gray-100';
-                    document.getElementById('theme-menu').className = 'absolute right-0 mt-2 py-2 w-48 rounded-lg shadow-xl backdrop-blur-md border hidden bg-github-dark/90 border-gray-700 text-gray-100';
-                }
-            },
-            oceanic: {
-                name: 'Oceanic Blue',
-                apply: () => {
-                    document.documentElement.classList.remove('dark', 'sunset', 'forest', 'purple');
-                    document.documentElement.classList.add('oceanic');
-                    document.body.className = 'font-roboto transition-all duration-500 overflow-x-hidden bg-gradient-to-br from-oceanic to-blue-900 text-white';
-                    document.getElementById('navbar').className = 'fixed top-0 w-full backdrop-blur-md z-40 border-b transition-all duration-300 bg-oceanic/80 border-blue-700 text-white';
-                    document.getElementById('theme-btn').className = 'w-12 h-12 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 hover:scale-110 flex items-center justify-center bg-oceanic/80 border-blue-700 text-white';
-                    document.getElementById('theme-menu').className = 'absolute right-0 mt-2 py-2 w-48 rounded-lg shadow-xl backdrop-blur-md border hidden bg-oceanic/90 border-blue-700 text-white';
-                }
-            },
-            sunset: {
-                name: 'Sunset Orange',
-                apply: () => {
-                    document.documentElement.classList.remove('dark', 'oceanic', 'forest', 'purple');
-                    document.documentElement.classList.add('sunset');
-                    document.body.className = 'font-roboto transition-all duration-500 overflow-x-hidden bg-gradient-to-br from-sunset to-red-700 text-white';
-                    document.getElementById('navbar').className = 'fixed top-0 w-full backdrop-blur-md z-40 border-b transition-all duration-300 bg-sunset/80 border-orange-700 text-white';
-                    document.getElementById('theme-btn').className = 'w-12 h-12 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 hover:scale-110 flex items-center justify-center bg-sunset/80 border-orange-700 text-white';
-                    document.getElementById('theme-menu').className = 'absolute right-0 mt-2 py-2 w-48 rounded-lg shadow-xl backdrop-blur-md border hidden bg-sunset/90 border-orange-700 text-white';
-                }
-            },
-            forest: {
-                name: 'Forest Green',
-                apply: () => {
-                    document.documentElement.classList.remove('dark', 'oceanic', 'sunset', 'purple');
-                    document.documentElement.classList.add('forest');
-                    document.body.className = 'font-roboto transition-all duration-500 overflow-x-hidden bg-gradient-to-br from-forest to-green-800 text-white';
-                    document.getElementById('navbar').className = 'fixed top-0 w-full backdrop-blur-md z-40 border-b transition-all duration-300 bg-forest/80 border-green-700 text-white';
-                    document.getElementById('theme-btn').className = 'w-12 h-12 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 hover:scale-110 flex items-center justify-center bg-forest/80 border-green-700 text-white';
-                    document.getElementById('theme-menu').className = 'absolute right-0 mt-2 py-2 w-48 rounded-lg shadow-xl backdrop-blur-md border hidden bg-forest/90 border-green-700 text-white';
-                }
-            },
-            purple: {
-                name: 'Purple Haze',
-                apply: () => {
-                    document.documentElement.classList.remove('dark', 'oceanic', 'sunset', 'forest');
-                    document.documentElement.classList.add('purple');
-                    document.body.className = 'font-roboto transition-all duration-500 overflow-x-hidden bg-gradient-to-br from-purple-theme to-indigo-900 text-white';
-                    document.getElementById('navbar').className = 'fixed top-0 w-full backdrop-blur-md z-40 border-b transition-all duration-300 bg-purple-theme/80 border-purple-700 text-white';
-                    document.getElementById('theme-btn').className = 'w-12 h-12 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 hover:scale-110 flex items-center justify-center bg-purple-theme/80 border-purple-700 text-white';
-                    document.getElementById('theme-menu').className = 'absolute right-0 mt-2 py-2 w-48 rounded-lg shadow-xl backdrop-blur-md border hidden bg-purple-theme/90 border-purple-700 text-white';
-                }
-            }
-        };
-
-        // Initialize theme
-        let currentTheme = localStorage.getItem('theme') || 'auto';
-        themes[currentTheme].apply();
-
-        // Theme selector functionality
-        document.getElementById('theme-btn').addEventListener('click', () => {
-            const menu = document.getElementById('theme-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        document.querySelectorAll('.theme-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                const theme = e.target.closest('.theme-option').dataset.theme;
-                currentTheme = theme;
-                localStorage.setItem('theme', theme);
-                themes[theme].apply();
-                document.getElementById('theme-menu').classList.add('hidden');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('#theme-btn') && !e.target.closest('#theme-menu')) {
-                document.getElementById('theme-menu').classList.add('hidden');
-            }
-        });
-
-        // Mobile menu functionality
-        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
-            const menu = document.querySelector('.mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    document.querySelector('.mobile-menu').classList.add('hidden');
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.style.backdropFilter = 'blur(20px)';
-                navbar.style.backgroundColor = navbar.style.backgroundColor.replace('0.8', '0.95');
-            } else {
-                navbar.style.backdropFilter = 'blur(12px)';
-                navbar.style.backgroundColor = navbar.style.backgroundColor.replace('0.95', '0.8');
-            }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for scroll animations
-        document.querySelectorAll('section > div').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.8s ease-out';
-            observer.observe(el);
-        });
-
-        // Active navigation highlight
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const sectionHeight = section.clientHeight;
-                if (sectionTop <= 200 && sectionTop + sectionHeight > 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('text-blue-500', 'font-semibold');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('text-blue-500', 'font-semibold');
-                }
-            });
-        });
-
-        // System theme change listener
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-            if (currentTheme === 'auto') {
-                themes.auto.apply();
-            }
-        });
-    </script>
 </body>
 </html>
-</div>
