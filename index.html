@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arjit Jha - Chill Coder</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
     <style>
         * {
@@ -14,19 +14,19 @@
         
         .code-snippet {
             font-family: 'Roboto Mono', monospace;
-            background: rgba(0, 0, 0, 0.05);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            border-left: 4px solid currentColor;
+            background: var(--code-bg);
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--accent);
+            margin: 1rem 0;
+            transition: all 0.3s ease;
         }
         
-        .glass {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .code-snippet:hover {
+            transform: translateX(4px);
         }
         
-        .theme-light {
+        :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f8fafc;
             --text-primary: #1f2937;
@@ -37,7 +37,7 @@
             --code-bg: rgba(59, 130, 246, 0.1);
         }
         
-        .theme-dark {
+        [data-theme="dark"] {
             --bg-primary: #111827;
             --bg-secondary: #1f2937;
             --text-primary: #f9fafb;
@@ -45,10 +45,10 @@
             --accent: #60a5fa;
             --accent-hover: #3b82f6;
             --border: #374151;
-            --code-bg: rgba(96, 165, 250, 0.1);
+            --code-bg: rgba(96, 165, 250, 0.15);
         }
         
-        .theme-material {
+        [data-theme="material"] {
             --bg-primary: #fafafa;
             --bg-secondary: #f5f5f5;
             --text-primary: #212121;
@@ -59,18 +59,18 @@
             --code-bg: rgba(33, 150, 243, 0.1);
         }
         
-        .theme-colorful {
-            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --bg-secondary: rgba(255, 255, 255, 0.1);
+        [data-theme="colorful"] {
+            --bg-primary: #0f0f23;
+            --bg-secondary: #1a1a2e;
             --text-primary: #ffffff;
-            --text-secondary: #e5e7eb;
-            --accent: #fbbf24;
-            --accent-hover: #f59e0b;
-            --border: rgba(255, 255, 255, 0.2);
-            --code-bg: rgba(251, 191, 36, 0.1);
+            --text-secondary: #b8b8ff;
+            --accent: #ff6b6b;
+            --accent-hover: #ff5252;
+            --border: #16213e;
+            --code-bg: rgba(255, 107, 107, 0.1);
         }
         
-        .theme-ocean {
+        [data-theme="ocean"] {
             --bg-primary: #0f172a;
             --bg-secondary: #1e293b;
             --text-primary: #e2e8f0;
@@ -78,27 +78,24 @@
             --accent: #0ea5e9;
             --accent-hover: #0284c7;
             --border: #334155;
-            --code-bg: rgba(14, 165, 233, 0.1);
+            --code-bg: rgba(14, 165, 233, 0.15);
         }
         
         body {
-            background: var(--bg-primary);
+            background-color: var(--bg-primary);
             color: var(--text-primary);
             transition: all 0.3s ease;
         }
         
-        .bg-primary { background: var(--bg-primary); }
-        .bg-secondary { background: var(--bg-secondary); }
+        .bg-primary { background-color: var(--bg-primary); }
+        .bg-secondary { background-color: var(--bg-secondary); }
         .text-primary { color: var(--text-primary); }
         .text-secondary { color: var(--text-secondary); }
         .accent { color: var(--accent); }
         .accent-hover:hover { color: var(--accent-hover); }
         .border-custom { border-color: var(--border); }
-        
-        .code-snippet {
-            background: var(--code-bg);
-            border-left-color: var(--accent);
-        }
+        .bg-accent { background-color: var(--accent); }
+        .bg-accent:hover { background-color: var(--accent-hover); }
         
         .nav-link {
             position: relative;
@@ -112,7 +109,7 @@
             height: 2px;
             bottom: -4px;
             left: 50%;
-            background: var(--accent);
+            background-color: var(--accent);
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
@@ -125,29 +122,24 @@
         .social-icon {
             transition: all 0.3s ease;
             border: 2px solid var(--border);
+            background-color: var(--bg-secondary);
         }
         
         .social-icon:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             border-color: var(--accent);
+            background-color: var(--accent);
+            color: white;
         }
         
-        .page {
-            display: none;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
         }
         
         .profile-pic {
@@ -156,365 +148,531 @@
         }
         
         .profile-pic:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) rotate(2deg);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .sticky-nav {
+            backdrop-filter: blur(10px);
+            background-color: rgba(var(--bg-primary), 0.9);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #111827;
+                --bg-secondary: #1f2937;
+                --text-primary: #f9fafb;
+                --text-secondary: #d1d5db;
+                --accent: #60a5fa;
+                --accent-hover: #3b82f6;
+                --border: #374151;
+                --code-bg: rgba(96, 165, 250, 0.15);
+            }
         }
     </style>
 </head>
-<body class="theme-light" id="body">
+<body>
     <!-- Navigation -->
-    <nav class="bg-secondary backdrop-blur-sm sticky top-0 z-50 border-b border-custom">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-2">
-                    <code class="text-lg font-mono accent">0xArjit</code>
-                </div>
+    <nav class="sticky-nav fixed top-0 w-full z-50 py-4 px-4 sm:px-6 lg:px-8 border-b border-custom">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <code class="text-xl font-mono accent font-bold">0xArjit</code>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link text-primary hover:accent-hover">Home</a>
+                <a href="#about" class="nav-link text-primary hover:accent-hover">About</a>
+                <a href="#hobbies" class="nav-link text-primary hover:accent-hover">Hobbies</a>
+                <a href="#projects" class="nav-link text-primary hover:accent-hover">Projects</a>
+                <a href="#contact" class="nav-link text-primary hover:accent-hover">Contact</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <select id="themeSelect" class="bg-secondary text-primary border border-custom rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent">
+                    <option value="system">System</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="material">Material</option>
+                    <option value="colorful">Colorful</option>
+                    <option value="ocean">Ocean</option>
+                </select>
                 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#" class="nav-link active text-primary hover:accent-hover" data-page="home">Home</a>
-                    <a href="#" class="nav-link text-primary hover:accent-hover" data-page="about">About</a>
-                    <a href="#" class="nav-link text-primary hover:accent-hover" data-page="hobbies">Hobbies</a>
-                    <a href="#" class="nav-link text-primary hover:accent-hover" data-page="projects">Projects</a>
-                    <a href="#" class="nav-link text-primary hover:accent-hover" data-page="contact">Contact</a>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <select id="themeSelect" class="bg-secondary text-primary border border-custom rounded-lg px-3 py-1 text-sm">
-                        <option value="system">System</option>
-                        <option value="light">Light</option>
-                        <option value="dark">Dark</option>
-                        <option value="material">Material</option>
-                        <option value="colorful">Colorful</option>
-                        <option value="ocean">Ocean</option>
-                    </select>
-                    
-                    <button id="mobileMenu" class="md:hidden">
-                        <i data-feather="menu"></i>
-                    </button>
-                </div>
+                <button id="mobileMenu" class="md:hidden text-primary">
+                    <i data-feather="menu"></i>
+                </button>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobileMenuContent" class="md:hidden hidden bg-secondary border-t border-custom">
-            <div class="px-4 py-2 space-y-2">
-                <a href="#" class="block py-2 nav-link active text-primary" data-page="home">Home</a>
-                <a href="#" class="block py-2 nav-link text-primary" data-page="about">About</a>
-                <a href="#" class="block py-2 nav-link text-primary" data-page="hobbies">Hobbies</a>
-                <a href="#" class="block py-2 nav-link text-primary" data-page="projects">Projects</a>
-                <a href="#" class="block py-2 nav-link text-primary" data-page="contact">Contact</a>
+        <div id="mobileMenuContent" class="md:hidden hidden mt-4 pb-4">
+            <div class="flex flex-col space-y-2">
+                <a href="#home" class="block py-2 text-primary hover:accent-hover">Home</a>
+                <a href="#about" class="block py-2 text-primary hover:accent-hover">About</a>
+                <a href="#hobbies" class="block py-2 text-primary hover:accent-hover">Hobbies</a>
+                <a href="#projects" class="block py-2 text-primary hover:accent-hover">Projects</a>
+                <a href="#contact" class="block py-2 text-primary hover:accent-hover">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Home Page -->
-    <div id="home" class="page active">
-        <div class="min-h-screen flex items-center justify-center px-4">
-            <div class="text-center max-w-4xl mx-auto fade-in">
-                <div class="mb-8">
-                    <img src="https://github.com/0xArjit.png" alt="Arjit Jha" 
-                         class="profile-pic w-32 h-32 rounded-full mx-auto mb-6 object-cover">
-                    <h1 class="text-4xl md:text-6xl font-bold text-primary mb-4">Arjit Jha</h1>
-                    <p class="text-xl md:text-2xl text-secondary mb-6">Just a chill coder. Coding for fun and gaming breaks.</p>
-                </div>
-                
-                <div class="code-snippet mb-8 text-left max-w-md mx-auto">
-                    <code class="text-sm md:text-base">
-                        // int main() {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;code();<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;chill();<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
-                        // }
-                    </code>
-                </div>
-                
-                <div class="flex justify-center space-x-4 mb-8">
-                    <a href="https://github.com/0xArjit" target="_blank" 
-                       class="social-icon bg-secondary p-3 rounded-full hover:accent-hover">
-                        <i data-feather="github"></i>
-                    </a>
-                    <a href="https://www.instagram.com/arjit.xyz" target="_blank" 
-                       class="social-icon bg-secondary p-3 rounded-full hover:accent-hover">
-                        <i data-feather="instagram"></i>
-                    </a>
-                    <a href="https://t.me/ThisIsARJ" target="_blank" 
-                       class="social-icon bg-secondary p-3 rounded-full hover:accent-hover">
-                        <i data-feather="send"></i>
-                    </a>
-                    <a href="mailto:arjitjha47@gmail.com" 
-                       class="social-icon bg-secondary p-3 rounded-full hover:accent-hover">
-                        <i data-feather="mail"></i>
-                    </a>
-                </div>
-                
-                <div class="code-snippet text-sm opacity-75 max-w-lg mx-auto">
-                    <code>// "I write C++ because I like my bugs fast and efficient."</code>
-                </div>
+    <!-- Home Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center px-4 pt-20">
+        <div class="text-center max-w-4xl mx-auto fade-in-up">
+            <div class="mb-8">
+                <img src="https://github.com/0xArjit.png" alt="Arjit Jha" 
+                     class="profile-pic w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 object-cover">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-primary mb-4">Arjit Jha</h1>
+                <p class="text-xl md:text-2xl lg:text-3xl text-secondary mb-6">Just a chill coder. Coding for fun and gaming breaks.</p>
+            </div>
+            
+            <div class="code-snippet text-left max-w-md mx-auto mb-8">
+                <code class="text-sm md:text-base">
+                    // int main() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;code();<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;chill();<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
+                    // }
+                </code>
+            </div>
+            
+            <div class="flex justify-center space-x-4 mb-8 flex-wrap gap-4">
+                <a href="https://github.com/0xArjit" target="_blank" 
+                   class="social-icon p-4 rounded-full hover:accent-hover">
+                    <i data-feather="github" class="w-6 h-6"></i>
+                </a>
+                <a href="https://www.instagram.com/arjit.xyz" target="_blank" 
+                   class="social-icon p-4 rounded-full hover:accent-hover">
+                    <i data-feather="instagram" class="w-6 h-6"></i>
+                </a>
+                <a href="https://t.me/ThisIsARJ" target="_blank" 
+                   class="social-icon p-4 rounded-full hover:accent-hover">
+                    <i data-feather="send" class="w-6 h-6"></i>
+                </a>
+                <a href="mailto:arjitjha47@gmail.com" 
+                   class="social-icon p-4 rounded-full hover:accent-hover">
+                    <i data-feather="mail" class="w-6 h-6"></i>
+                </a>
+            </div>
+            
+            <div class="code-snippet text-sm opacity-75 max-w-lg mx-auto">
+                <code>// "I write C++ because I like my bugs fast and efficient."</code>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- About Page -->
-    <div id="about" class="page">
-        <div class="min-h-screen py-20 px-4">
-            <div class="max-w-4xl mx-auto fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold text-center text-primary mb-12">About Me</h2>
-                
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <div class="bg-secondary rounded-lg p-8 border border-custom">
-                        <h3 class="text-2xl font-bold text-primary mb-4">Who Am I?</h3>
-                        <p class="text-secondary mb-4">
-                            Hey there! I'm <span class="accent font-semibold">Arjit Jha</span>, a 17-year-old coder from 
-                            <span class="accent font-semibold">Pakur, Jharkhand, India</span>. 
-                            I'm passionate about coding and gaming, always looking for the next challenge to tackle.
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-secondary">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-primary mb-12">About Me</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                <div class="section-card rounded-lg p-8">
+                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-6">Who Am I?</h3>
+                    <div class="space-y-4 text-secondary text-lg">
+                        <p>
+                            Hey there! I'm <span class="accent font-semibold">Arjit Jha</span>, a 17-year-old passionate coder from 
+                            <span class="accent font-semibold">Pakur, Jharkhand, India</span>.
                         </p>
-                        <p class="text-secondary">
+                        <p>
+                            I'm deeply passionate about coding and gaming, always looking for the next challenge to tackle. 
+                            My journey in programming started with curiosity and has grown into a genuine love for creating 
+                            solutions through code.
+                        </p>
+                        <p>
                             When I'm not debugging code or exploring new technologies, you'll find me gaming 
-                            or just chilling with some good music. Life's too short for boring code!
+                            or just chilling with some good music. Life's too short for boring code, right?
+                        </p>
+                        <p>
+                            I believe in writing clean, efficient code and always strive to learn something new every day. 
+                            Coffee is my fuel, and C++ is my weapon of choice!
                         </p>
                     </div>
-                    
-                    <div class="space-y-6">
-                        <div class="code-snippet">
-                            <code>// int main() { enjoyLife(); code(); }</code>
-                        </div>
-                        <div class="code-snippet">
-                            <code>// while(alive) { chill(); sipCoffee(); }</code>
-                        </div>
-                        <div class="code-snippet">
-                            <code>// std::cout << "Code is life!";</code>
-                        </div>
-                    </div>
                 </div>
                 
-                <div class="bg-secondary rounded-lg p-8 border border-custom mb-8">
-                    <h3 class="text-2xl font-bold text-primary mb-6">Quick Stats</h3>
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold accent">17</div>
-                            <div class="text-secondary">Years Old</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold accent">∞</div>
-                            <div class="text-secondary">Coffee Cups</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold accent">24/7</div>
-                            <div class="text-secondary">Coding Mode</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold accent">100%</div>
-                            <div class="text-secondary">Chill Level</div>
-                        </div>
+                <div class="space-y-6">
+                    <div class="code-snippet">
+                        <code>// int main() { enjoyLife(); code(); }</code>
                     </div>
-                </div>
-                
-                <div class="code-snippet text-center">
-                    <code>// "I don't always test my code, but when I do, I do it in production."</code>
+                    <div class="code-snippet">
+                        <code>// while(alive) { chill(); sipCoffee(); }</code>
+                    </div>
+                    <div class="code-snippet">
+                        <code>// std::cout << "Code is life!";</code>
+                    </div>
+                    <div class="code-snippet">
+                        <code>// if(problem) { solve(problem); }</code>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Hobbies Page -->
-    <div id="hobbies" class="page">
-        <div class="min-h-screen py-20 px-4">
-            <div class="max-w-4xl mx-auto fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold text-center text-primary mb-12">My Hobbies</h2>
-                
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <div class="bg-secondary rounded-lg p-8 border border-custom">
-                        <div class="flex items-center mb-4">
-                            <i data-feather="code" class="accent mr-3"></i>
-                            <h3 class="text-2xl font-bold text-primary">Coding</h3>
-                        </div>
-                        <p class="text-secondary mb-4">
-                            Coding isn't just what I do - it's who I am. From C++ to web development, 
-                            I love crafting solutions and bringing ideas to life through code. 
-                            Every bug is just a puzzle waiting to be solved!
-                        </p>
-                        <div class="code-snippet">
-                            <code>// for(auto day : life) { code(); play(); }</code>
-                        </div>
+            
+            <!-- Personal Details -->
+            <div class="section-card rounded-lg p-8 mb-8">
+                <h3 class="text-2xl md:text-3xl font-bold text-primary mb-6">Personal Details</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-lg">
+                    <div>
+                        <div class="text-secondary mb-1">Name</div>
+                        <div class="text-primary font-semibold">Arjit Jha</div>
                     </div>
-                    
-                    <div class="bg-secondary rounded-lg p-8 border border-custom">
-                        <div class="flex items-center mb-4">
-                            <i data-feather="gamepad-2" class="accent mr-3"></i>
-                            <h3 class="text-2xl font-bold text-primary">Gaming</h3>
-                        </div>
-                        <p class="text-secondary mb-4">
+                    <div>
+                        <div class="text-secondary mb-1">Age</div>
+                        <div class="text-primary font-semibold">17 Years</div>
+                    </div>
+                    <div>
+                        <div class="text-secondary mb-1">Location</div>
+                        <div class="text-primary font-semibold">Pakur, Jharkhand, India</div>
+                    </div>
+                    <div>
+                        <div class="text-secondary mb-1">GitHub</div>
+                        <div class="text-primary font-semibold">0xArjit</div>
+                    </div>
+                    <div>
+                        <div class="text-secondary mb-1">Instagram</div>
+                        <div class="text-primary font-semibold">@arjit.xyz</div>
+                    </div>
+                    <div>
+                        <div class="text-secondary mb-1">Email</div>
+                        <div class="text-primary font-semibold">arjitjha47@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats -->
+            <div class="section-card rounded-lg p-8 mb-8">
+                <h3 class="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">Quick Stats</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="stat-card text-center p-6 rounded-lg">
+                        <div class="text-4xl font-bold accent mb-2">17</div>
+                        <div class="text-secondary">Years Old</div>
+                    </div>
+                    <div class="stat-card text-center p-6 rounded-lg">
+                        <div class="text-4xl font-bold accent mb-2">∞</div>
+                        <div class="text-secondary">Coffee Cups</div>
+                    </div>
+                    <div class="stat-card text-center p-6 rounded-lg">
+                        <div class="text-4xl font-bold accent mb-2">24/7</div>
+                        <div class="text-secondary">Coding Mode</div>
+                    </div>
+                    <div class="stat-card text-center p-6 rounded-lg">
+                        <div class="text-4xl font-bold accent mb-2">100%</div>
+                        <div class="text-secondary">Chill Level</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-snippet text-center">
+                <code>// "I don't always test my code, but when I do, I do it in production."</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-primary mb-12">My Hobbies</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                <div class="section-card rounded-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <i data-feather="code" class="accent mr-4 w-8 h-8"></i>
+                        <h3 class="text-2xl md:text-3xl font-bold text-primary">Coding</h3>
+                    </div>
+                    <div class="text-secondary text-lg space-y-4">
+                        <p>
+                            Coding isn't just what I do - it's who I am. From C++ to web development, 
+                            I love crafting solutions and bringing ideas to life through code.
+                        </p>
+                        <p>
+                            Every bug is just a puzzle waiting to be solved! I enjoy exploring new 
+                            programming languages, frameworks, and technologies. The satisfaction of 
+                            seeing clean, efficient code run perfectly is unmatched.
+                        </p>
+                        <p>
+                            I particularly love C++ for its power and efficiency, but I'm always 
+                            open to learning new languages and paradigms. The coding community 
+                            is amazing, and I love being part of it.
+                        </p>
+                    </div>
+                    <div class="code-snippet mt-6">
+                        <code>// for(auto day : life) { code(); play(); }</code>
+                    </div>
+                </div>
+                
+                <div class="section-card rounded-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <i data-feather="gamepad-2" class="accent mr-4 w-8 h-8"></i>
+                        <h3 class="text-2xl md:text-3xl font-bold text-primary">Gaming</h3>
+                    </div>
+                    <div class="text-secondary text-lg space-y-4">
+                        <p>
                             Gaming is my escape from the world of semicolons and curly braces. 
                             Whether it's strategy games that make me think or action games that 
                             get my heart racing, I'm always up for a good gaming session.
                         </p>
-                        <div class="code-snippet">
-                            <code>// if(chill) { game(); }</code>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-secondary rounded-lg p-8 border border-custom mb-8">
-                    <h3 class="text-2xl font-bold text-primary mb-6">The Perfect Balance</h3>
-                    <p class="text-secondary mb-6">
-                        Life is all about balance, right? I spend my days writing code, solving problems, 
-                        and building cool stuff. Then I switch gears to gaming mode for some well-deserved fun. 
-                        Coffee keeps me going through both!
-                    </p>
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div class="code-snippet">
-                            <code>// while(alive) { coffee(); code(); }</code>
-                        </div>
-                        <div class="code-snippet">
-                            <code>// sleep? never_heard_of_it();</code>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="code-snippet text-center">
-                    <code>// "Gaming and coding: because sleep is overrated."</code>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Projects Page -->
-    <div id="projects" class="page">
-        <div class="min-h-screen py-20 px-4">
-            <div class="max-w-4xl mx-auto fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold text-center text-primary mb-12">Projects</h2>
-                
-                <div class="text-center mb-12">
-                    <div class="code-snippet inline-block mb-6">
-                        <code>// Building cool stuff, one commit at a time</code>
-                    </div>
-                    <p class="text-secondary text-lg">
-                        Check out my GitHub for the latest projects and experiments. 
-                        Always working on something new and exciting!
-                    </p>
-                </div>
-                
-                <div class="bg-secondary rounded-lg p-8 border border-custom mb-8">
-                    <div class="text-center">
-                        <i data-feather="github" class="w-16 h-16 accent mx-auto mb-4"></i>
-                        <h3 class="text-2xl font-bold text-primary mb-4">Visit My GitHub</h3>
-                        <p class="text-secondary mb-6">
-                            All my projects, experiments, and code adventures live on GitHub. 
-                            From small utilities to bigger projects, there's always something brewing.
+                        <p>
+                            I appreciate games with good storytelling, innovative mechanics, and 
+                            solid gameplay. Gaming also inspires my coding - seeing how games 
+                            work makes me want to create my own interactive experiences.
                         </p>
-                        <a href="https://github.com/0xArjit" target="_blank" 
-                           class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition-opacity">
-                            <i data-feather="external-link" class="mr-2 w-5 h-5"></i>
-                            View on GitHub
-                        </a>
+                        <p>
+                            The gaming community has taught me teamwork, strategy, and quick 
+                            problem-solving - skills that translate perfectly to programming!
+                        </p>
                     </div>
-                </div>
-                
-                <div class="grid sm:grid-cols-2 gap-4 mb-8">
-                    <div class="code-snippet">
-                        <code>// git add . && git commit -m "Another day, another commit"</code>
+                    <div class="code-snippet mt-6">
+                        <code>// if(chill) { game(); }</code>
                     </div>
-                    <div class="code-snippet">
-                        <code>// while(ideas.length > 0) { code(ideas.pop()); }</code>
-                    </div>
-                </div>
-                
-                <div class="code-snippet text-center">
-                    <code>// "Code never lies, comments sometimes do."</code>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Contact Page -->
-    <div id="contact" class="page">
-        <div class="min-h-screen py-20 px-4">
-            <div class="max-w-4xl mx-auto fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold text-center text-primary mb-12">Let's Connect</h2>
-                
-                <div class="text-center mb-12">
-                    <div class="code-snippet inline-block mb-6">
-                        <code>// std::cout << "Feel free to connect!";</code>
-                    </div>
-                    <p class="text-secondary text-lg">
-                        Got a cool project idea? Want to chat about code or games? 
-                        Hit me up on any of these platforms!
+            
+            <div class="section-card rounded-lg p-8 mb-8">
+                <h3 class="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">The Perfect Balance</h3>
+                <div class="text-secondary text-lg text-center space-y-4">
+                    <p>
+                        Life is all about balance, right? I spend my days writing code, solving problems, 
+                        and building cool stuff. Then I switch gears to gaming mode for some well-deserved fun.
+                    </p>
+                    <p>
+                        Coffee keeps me going through both! Whether I'm debugging a complex algorithm 
+                        or strategizing in a game, I approach both with the same passion and dedication.
+                    </p>
+                    <p>
+                        This balance keeps me creative, sharp, and most importantly, happy. Both hobbies 
+                        complement each other perfectly - coding exercises my logical thinking, while 
+                        gaming keeps my reflexes sharp and creativity flowing.
                     </p>
                 </div>
-                
-                <div class="grid sm:grid-cols-2 gap-6 mb-12">
+                <div class="grid sm:grid-cols-2 gap-4 mt-8">
+                    <div class="code-snippet">
+                        <code>// while(alive) { coffee(); code(); }</code>
+                    </div>
+                    <div class="code-snippet">
+                        <code>// sleep? never_heard_of_it();</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-snippet text-center">
+                <code>// "Gaming and coding: because sleep is overrated."</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 bg-secondary">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-primary mb-12">Projects</h2>
+            
+            <div class="text-center mb-12">
+                <div class="code-snippet inline-block mb-6">
+                    <code class="text-lg">// Building cool stuff, one commit at a time</code>
+                </div>
+                <p class="text-secondary text-xl max-w-3xl mx-auto">
+                    Check out my GitHub for the latest projects and experiments. 
+                    I'm always working on something new and exciting! From small utilities 
+                    to bigger projects, there's always something brewing in my code kitchen.
+                </p>
+            </div>
+            
+            <div class="section-card rounded-lg p-8 mb-8 text-center">
+                <div class="mb-6">
+                    <i data-feather="github" class="w-20 h-20 accent mx-auto mb-6"></i>
+                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-4">Visit My GitHub</h3>
+                </div>
+                <div class="text-secondary text-lg space-y-4 mb-8 max-w-2xl mx-auto">
+                    <p>
+                        All my projects, experiments, and code adventures live on GitHub. 
+                        From small utilities to bigger projects, there's always something brewing.
+                    </p>
+                    <p>
+                        I believe in open source and love sharing my work with the community. 
+                        You'll find everything from C++ programs to web applications, 
+                        each project representing a step in my coding journey.
+                    </p>
+                    <p>
+                        Feel free to explore, fork, or contribute to any of my repositories. 
+                        Collaboration makes everything better!
+                    </p>
+                </div>
+                <div class="mb-8">
                     <a href="https://github.com/0xArjit" target="_blank" 
-                       class="bg-secondary rounded-lg p-6 border border-custom hover:border-accent transition-colors group">
-                        <div class="flex items-center">
-                            <i data-feather="github" class="w-8 h-8 accent mr-4"></i>
-                            <div>
-                                <h3 class="text-lg font-semibold text-primary">GitHub</h3>
-                                <p class="text-secondary">Check out my code</p>
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://www.instagram.com/arjit.xyz" target="_blank" 
-                       class="bg-secondary rounded-lg p-6 border border-custom hover:border-accent transition-colors group">
-                        <div class="flex items-center">
-                            <i data-feather="instagram" class="w-8 h-8 accent mr-4"></i>
-                            <div>
-                                <h3 class="text-lg font-semibold text-primary">Instagram</h3>
-                                <p class="text-secondary">@arjit.xyz</p>
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://t.me/ThisIsARJ" target="_blank" 
-                       class="bg-secondary rounded-lg p-6 border border-custom hover:border-accent transition-colors group">
-                        <div class="flex items-center">
-                            <i data-feather="send" class="w-8 h-8 accent mr-4"></i>
-                            <div>
-                                <h3 class="text-lg font-semibold text-primary">Telegram</h3>
-                                <p class="text-secondary">ThisIsARJ</p>
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <a href="mailto:arjitjha47@gmail.com" 
-                       class="bg-secondary rounded-lg p-6 border border-custom hover:border-accent transition-colors group">
-                        <div class="flex items-center">
-                            <i data-feather="mail" class="w-8 h-8 accent mr-4"></i>
-                            <div>
-                                <h3 class="text-lg font-semibold text-primary">Email</h3>
-                                <p class="text-secondary">arjitjha47@gmail.com</p>
-                            </div>
-                        </div>
+                       class="inline-flex items-center px-8 py-4 bg-accent text-white rounded-lg hover:bg-accent-hover transition-all transform hover:scale-105 text-lg font-semibold">
+                        <i data-feather="external-link" class="mr-3 w-5 h-5"></i>
+                        View on GitHub
                     </a>
                 </div>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                <div class="code-snippet">
+                    <code>// git add . && git commit -m "Another day, another commit"</code>
+                </div>
+                <div class="code-snippet">
+                    <code>// while(ideas.length > 0) { code(ideas.pop()); }</code>
+                </div>
+                <div class="code-snippet">
+                    <code>// push(project, github); // Share with world</code>
+                </div>
+            </div>
+            
+            <div class="code-snippet text-center">
+                <code>// "Code never lies, comments sometimes do."</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-primary mb-12">Let's Connect</h2>
+            
+            <div class="text-center mb-12">
+                <div class="code-snippet inline-block mb-6">
+                    <code class="text-lg">// std::cout << "Feel free to connect!";</code>
+                </div>
+                <p class="text-secondary text-xl max-w-3xl mx-auto">
+                    Got a cool project idea? Want to chat about code or games? 
+                    Need help with a programming problem? Hit me up on any of these platforms! 
+                    I love connecting with fellow coders and gamers.
+                </p>
+            </div>
+            
+            <!-- Contact Cards -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <a href="https://github.com/0xArjit" target="_blank" 
+                   class="section-card rounded-lg p-6 hover:border-accent transition-all group transform hover:scale-105">
+                    <div class="text-center">
+                        <i data-feather="github" class="w-12 h-12 accent mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl font-semibold text-primary mb-2">GitHub</h3>
+                        <p class="text-secondary">@0xArjit</p>
+                        <p class="text-secondary text-sm mt-2">Check out my code & projects</p>
+                    </div>
+                </a>
                 
-                <div class="bg-secondary rounded-lg p-8 border border-custom mb-8 text-center">
-                    <h3 class="text-2xl font-bold text-primary mb-4">Response Time</h3>
-                    <p class="text-secondary mb-4">
+                <a href="https://www.instagram.com/arjit.xyz" target="_blank" 
+                   class="section-card rounded-lg p-6 hover:border-accent transition-all group transform hover:scale-105">
+                    <div class="text-center">
+                        <i data-feather="instagram" class="w-12 h-12 accent mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl font-semibold text-primary mb-2">Instagram</h3>
+                        <p class="text-secondary">@arjit.xyz</p>
+                        <p class="text-secondary text-sm mt-2">Follow my journey</p>
+                    </div>
+                </a>
+                
+                <a href="https://t.me/ThisIsARJ" target="_blank" 
+                   class="section-card rounded-lg p-6 hover:border-accent transition-all group transform hover:scale-105">
+                    <div class="text-center">
+                        <i data-feather="send" class="w-12 h-12 accent mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl font-semibold text-primary mb-2">Telegram</h3>
+                        <p class="text-secondary">@ThisIsARJ</p>
+                        <p class="text-secondary text-sm mt-2">Quick chats & updates</p>
+                    </div>
+                </a>
+                
+                <a href="mailto:arjitjha47@gmail.com" 
+                   class="section-card rounded-lg p-6 hover:border-accent transition-all group transform hover:scale-105">
+                    <div class="text-center">
+                        <i data-feather="mail" class="w-12 h-12 accent mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl font-semibold text-primary mb-2">Email</h3>
+                        <p class="text-secondary">arjitjha47@gmail.com</p>
+                        <p class="text-secondary text-sm mt-2">Professional inquiries</p>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Response Time Info -->
+            <div class="section-card rounded-lg p-8 mb-8 text-center">
+                <h3 class="text-2xl md:text-3xl font-bold text-primary mb-6">Response Time</h3>
+                <div class="text-secondary text-lg space-y-4 max-w-2xl mx-auto">
+                    <p>
                         I usually respond pretty quickly, unless I'm deep in a coding session 
                         or in the middle of an epic gaming marathon. But don't worry, I'll get back to you!
                     </p>
-                    <div class="code-snippet inline-block">
-                        <code>// response_time = (coffee_level > 0) ? "fast" : "eventually";</code>
-                    </div>
+                    <p>
+                        Whether you want to discuss a project, need coding help, or just want to chat 
+                        about the latest games, I'm always excited to connect with fellow enthusiasts.
+                    </p>
+                    <p>
+                        Feel free to reach out on any platform - I'm most active on GitHub and Telegram, 
+                        but I check all my socials regularly.
+                    </p>
                 </div>
-                
-                <div class="code-snippet text-center">
-                    <code>// "Don't worry, I only respond to bug-free messages."</code>
+                <div class="code-snippet inline-block mt-6">
+                    <code>// response_time = (coffee_level > 0) ? "fast" : "eventually";</code>
                 </div>
+            </div>
+            
+            <div class="code-snippet text-center">
+                <code>// "Don't worry, I only respond to bug-free messages."</code>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-secondary border-t border-custom py-8">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <div class="code-snippet inline-block mb-4">
-                <code>// Made with ❤️ and lots of coffee</code>
+    <footer class="bg-secondary border-t border-custom py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center space-y-6">
+                <!-- Social Links -->
+                <div class="flex justify-center space-x-6">
+                    <a href="https://github.com/0xArjit" target="_blank" 
+                       class="social-icon p-3 rounded-full hover:accent-hover">
+                        <i data-feather="github" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://www.instagram.com/arjit.xyz" target="_blank" 
+                       class="social-icon p-3 rounded-full hover:accent-hover">
+                        <i data-feather="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://t.me/ThisIsARJ" target="_blank" 
+                       class="social-icon p-3 rounded-full hover:accent-hover">
+                        <i data-feather="send" class="w-5 h-5"></i>
+                    </a>
+                    <a href="mailto:arjitjha47@gmail.com" 
+                       class="social-icon p-3 rounded-full hover:accent-hover">
+                        <i data-feather="mail" class="w-5 h-5"></i>
+                    </a>
+                </div>
+                
+                <!-- Footer Code -->
+                <div class="code-snippet inline-block">
+                    <code>// Made with ❤️ and lots of coffee by Arjit Jha</code>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="text-secondary space-y-2">
+                    <p class="text-lg">© 2024 Arjit Jha. Built with passion, powered by caffeine.</p>
+                    <p>17 years old • Pakur, Jharkhand, India • Chill Coder & Gamer</p>
+                </div>
+                
+                <!-- Final Code Joke -->
+                <div class="code-snippet inline-block opacity-75">
+                    <code>// while(true) { code(); game(); chill(); }</code>
+                </div>
             </div>
-            <p class="text-secondary">
-                © 2024 Arjit Jha. Built with passion, powered by caffeine.
-            </p>
         </div>
     </footer>
 
@@ -524,58 +682,87 @@
         
         // Theme management
         const themeSelect = document.getElementById('themeSelect');
-        const body = document.getElementById('body');
+        const html = document.documentElement;
         
-        // Detect system theme
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        // Function to get system theme
+        function getSystemTheme() {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
         
-        // Load saved theme or use system theme
-        const savedTheme = localStorage.getItem('theme') || 'system';
-        themeSelect.value = savedTheme;
-        applyTheme(savedTheme);
-        
-        themeSelect.addEventListener('change', (e) => {
-            const selectedTheme = e.target.value;
-            localStorage.setItem('theme', selectedTheme);
-            applyTheme(selectedTheme);
-        });
-        
+        // Function to apply theme
         function applyTheme(theme) {
             if (theme === 'system') {
-                body.className = `theme-${systemTheme}`;
+                const systemTheme = getSystemTheme();
+                html.setAttribute('data-theme', systemTheme);
             } else {
-                body.className = `theme-${theme}`;
+                html.setAttribute('data-theme', theme);
             }
             
             // Re-initialize icons after theme change
             setTimeout(() => feather.replace(), 100);
         }
         
-        // Navigation
-        const navLinks = document.querySelectorAll('.nav-link');
-        const pages = document.querySelectorAll('.page');
+        // Load saved theme or use system theme
+        const savedTheme = localStorage.getItem('theme') || 'system';
+        themeSelect.value = savedTheme;
+        applyTheme(savedTheme);
         
+        // Theme select change handler
+        themeSelect.addEventListener('change', (e) => {
+            const selectedTheme = e.target.value;
+            localStorage.setItem('theme', selectedTheme);
+            applyTheme(selectedTheme);
+        });
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (themeSelect.value === 'system') {
+                applyTheme('system');
+            }
+        });
+        
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+        
+        // Function to update active nav link
+        function updateActiveNav() {
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    const correspondingNavLink = document.querySelector(`a[href="#${section.id}"]`);
+                    if (correspondingNavLink) {
+                        correspondingNavLink.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Update active nav on scroll
+        window.addEventListener('scroll', updateActiveNav);
+        
+        // Smooth scroll for nav links
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const targetPage = e.target.getAttribute('data-page');
+                const targetId = e.target.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
                 
-                // Update active nav link
-                navLinks.forEach(nl => nl.classList.remove('active'));
-                e.target.classList.add('active');
-                
-                // Show target page
-                pages.forEach(page => page.classList.remove('active'));
-                document.getElementById(targetPage).classList.add('active');
-                
-                // Add fade-in animation
-                document.getElementById(targetPage).classList.add('fade-in');
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
                 
                 // Close mobile menu
                 document.getElementById('mobileMenuContent').classList.add('hidden');
-                
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
         
@@ -587,66 +774,33 @@
             mobileMenuContent.classList.toggle('hidden');
         });
         
-        // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (themeSelect.value === 'system') {
-                applyTheme('system');
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuContent.contains(e.target)) {
+                mobileMenuContent.classList.add('hidden');
             }
         });
         
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
                 }
             });
+        }, observerOptions);
+        
+        // Observe sections and cards
+        document.querySelectorAll('section, .section-card, .stat-card').forEach(el => {
+            observer.observe(el);
         });
         
-        // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', () => {
-            // Animate elements on scroll (simple version)
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe all major sections
-            document.querySelectorAll('.bg-secondary, .code-snippet, .social-icon').forEach(el => {
-                observer.observe(el);
-            });
-        });
-        
-        // Add typing effect to code snippets (optional enhancement)
-        function typeWriter(element, text, speed = 50) {
-            let i = 0;
-            element.innerHTML = '';
-            
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            
-            type();
-        }
-        
-        // Easter egg: Konami code
+        // Konami code easter egg
         let konamiCode = [];
         const konamiSequence = [
             'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
@@ -662,9 +816,50 @@
             }
             
             if (konamiCode.join(',') === konamiSequence.join(',')) {
-                alert('🎮 Konami Code activated! You found the gamer\'s secret! 🕹️');
+                // Create a fun animation
+                document.body.style.animation = 'rainbow 2s ease-in-out';
+                alert('🎮 Konami Code activated! You found the gamer\'s secret! 🕹️\n\n// Achievement unlocked: True Gamer Coder!');
                 konamiCode = [];
+                
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 2000);
             }
+        });
+        
+        // Add rainbow animation for easter egg
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                25% { filter: hue-rotate(90deg); }
+                50% { filter: hue-rotate(180deg); }
+                75% { filter: hue-rotate(270deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize active nav on page load
+        updateActiveNav();
+        
+        // Add loading animation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+        
+        // Performance optimization: Throttle scroll events
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                cancelAnimationFrame(scrollTimeout);
+            }
+            scrollTimeout = requestAnimationFrame(updateActiveNav);
         });
     </script>
 </body>
