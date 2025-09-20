@@ -5,1108 +5,463 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arjit Jha - Coder & Developer</title>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Fira+Code&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
-        /* Custom CSS Variables for Theme System */
+        /* --- THEME SYSTEM --- */
         :root {
-            --bg-primary: #f8fafc;
-            --bg-secondary: #ffffff;
-            --bg-accent: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --text-accent: #3b82f6;
-            --border-color: #e2e8f0;
-            --shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 20px 35px -3px rgba(0, 0, 0, 0.15), 0 8px 12px -2px rgba(0, 0, 0, 0.1);
-        }
-
-        /* GitHub Dark Theme */
-        [data-theme="github-dark"] {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-accent: linear-gradient(135deg, #238636 0%, #0969da 100%);
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --text-accent: #58a6ff;
-            --border-color: #30363d;
-            --shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-            --shadow-hover: 0 20px 35px -3px rgba(0, 0, 0, 0.4), 0 8px 12px -2px rgba(0, 0, 0, 0.25);
-        }
-
-        /* GitHub Light Theme */
-        [data-theme="github-light"] {
             --bg-primary: #ffffff;
             --bg-secondary: #f6f8fa;
             --bg-accent: linear-gradient(135deg, #0969da 0%, #8250df 100%);
             --text-primary: #24292f;
-            --text-secondary: #656d76;
+            --text-secondary: #57606a;
             --text-accent: #0969da;
             --border-color: #d0d7de;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Light Material Theme */
-        [data-theme="light-material"] {
-            --bg-primary: #fafafa;
-            --bg-secondary: #ffffff;
-            --bg-accent: linear-gradient(135deg, #2196f3 0%, #21cbf3 100%);
-            --text-primary: #212121;
-            --text-secondary: #757575;
-            --text-accent: #2196f3;
-            --border-color: #e0e0e0;
+        [data-theme="github-dark"] {
+            --bg-primary: #0d1117; --bg-secondary: #161b22; --bg-accent: linear-gradient(135deg, #238636 0%, #0969da 100%);
+            --text-primary: #c9d1d9; --text-secondary: #8b949e; --text-accent: #58a6ff; --border-color: #30363d;
         }
 
-        /* Dark Material Theme */
-        [data-theme="dark-material"] {
-            --bg-primary: #121212;
-            --bg-secondary: #1e1e1e;
-            --bg-accent: linear-gradient(135deg, #bb86fc 0%, #03dac6 100%);
-            --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
-            --text-accent: #bb86fc;
-            --border-color: #333333;
+        [data-theme="dracula"] {
+            --bg-primary: #282a36; --bg-secondary: #44475a; --bg-accent: linear-gradient(135deg, #ff79c6 0%, #bd93f9 100%);
+            --text-primary: #f8f8f2; --text-secondary: #bd93f9; --text-accent: #50fa7b; --border-color: #6272a4;
         }
 
-        /* Base Styles */
-        * {
-            font-family: 'Roboto', sans-serif;
+        [data-theme="nord"] {
+            --bg-primary: #2e3440; --bg-secondary: #3b4252; --bg-accent: linear-gradient(135deg, #88c0d0 0%, #81a1c1 100%);
+            --text-primary: #d8dee9; --text-secondary: #a3be8c; --text-accent: #88c0d0; --border-color: #4c566a;
         }
 
+        [data-theme="solarized-light"] {
+            --bg-primary: #fdf6e3; --bg-secondary: #eee8d5; --bg-accent: linear-gradient(135deg, #268bd2 0%, #2aa198 100%);
+            --text-primary: #657b83; --text-secondary: #586e75; --text-accent: #268bd2; --border-color: #93a1a1;
+        }
+
+        [data-theme="synthwave"] {
+            --bg-primary: #26214f; --bg-secondary: #302760; --bg-accent: linear-gradient(135deg, #ff33b8 0%, #33b8ff 100%);
+            --text-primary: #ffffff; --text-secondary: #ffd700; --text-accent: #00e5ff; --border-color: #b152cf;
+        }
+        
+        /* --- BASE STYLES --- */
+        * { font-family: 'Roboto', sans-serif; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink {
-            0%, 50% { border-right-color: transparent; }
-            51%, 100% { border-right-color: var(--text-accent); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
-        }
-
-        /* Particle Animation */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--text-accent);
-            border-radius: 50%;
-            animation: particle-float 6s infinite linear;
-            opacity: 0.7;
-        }
-
-        @keyframes particle-float {
-            0% {
-                transform: translateY(100vh) translateX(-50px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-10vh) translateX(50px);
-                opacity: 0;
-            }
-        }
-
-        /* Code Block Styling */
-        .code-block {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            font-family: 'Fira Code', 'Consolas', monospace;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .code-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
+        .gradient-text {
             background: var(--bg-accent);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; font-weight: 700;
         }
 
-        /* Typing Animation */
+        /* --- ANIMATIONS --- */
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+        @keyframes typewriter { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 50% { border-color: transparent; } }
+
         .typewriter {
             overflow: hidden;
             border-right: 3px solid var(--text-accent);
             white-space: nowrap;
-            animation: typewriter 3s steps(40) 1s 1 normal both, blink 1s steps(40) infinite normal;
+            margin: 0 auto;
+            animation: typewriter 3s steps(40) 1s 1 normal both, blink 0.75s steps(40) infinite normal;
         }
 
-        /* Hover Effects */
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* Theme Switcher */
-        .theme-switcher {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .theme-switcher:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* Navigation Styles */
-        .nav-link {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: var(--bg-accent);
-            transition: left 0.3s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            left: 0;
-        }
-
-        /* Section Spacing */
-        .section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem 0;
-        }
-
-        /* Gradient Text */
-        .gradient-text {
-            background: var(--bg-accent);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-        }
-
-        /* Fade in animations */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- PARTICLE STYLES --- */
+        .particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; }
+        .particle {
+            position: absolute; width: 3px; height: 3px;
+            background: var(--text-accent); border-radius: 50%; opacity: 0;
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* --- COMPONENT STYLES --- */
+        .code-block {
+            background: var(--bg-secondary); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 1.5rem;
+            font-family: 'Fira Code', monospace; font-size: 0.9rem; line-height: 1.6;
+            box-shadow: var(--shadow); position: relative; overflow: hidden;
+        }
+        .code-block::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            right: 0; height: 3px; background: var(--bg-accent);
+        }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+        .nav-link { position: relative; color: var(--text-primary); }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+            height: 2px; background: var(--bg-accent); transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+        .section {
+            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh; padding: 8rem 1rem;
         }
 
-        /* Responsive Design */
+        /* --- THEME SWITCHER --- */
+        .theme-switcher {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 1000;
+        }
+        #theme-btn {
+            background: var(--bg-secondary); border: 1px solid var(--border-color);
+            width: 56px; height: 56px; border-radius: 50%; box-shadow: var(--shadow);
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        #theme-btn:hover { transform: scale(1.1); box-shadow: var(--shadow-hover); }
+
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            .section {
-                min-height: auto;
-                padding: 3rem 0;
-            }
-            
-            .theme-switcher {
-                bottom: 1rem;
-                right: 1rem;
+            .section { padding: 6rem 1rem; min-height: auto; }
+            h1 { font-size: 2.5rem; /* 40px */ }
+            h2 { font-size: 2rem; /* 32px */ }
+            .typewriter { font-size: 1.125rem; /* 18px */ }
+
+            /* Full-screen mobile menu */
+            #mobile-menu {
+                background-color: rgba(0,0,0,0.8);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
             }
         }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-opacity-90 backdrop-blur-md" style="background-color: var(--bg-secondary);">
+<body class="opacity-0 transition-opacity duration-500">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-opacity-80 backdrop-blur-md" style="background-color: var(--bg-secondary);">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
+            <div class="flex justify-between items-center h-20">
                 <div class="text-2xl font-bold gradient-text">Arjit Jha</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link px-3 py-2 text-sm font-medium hover:text-blue-500 transition-colors">Home</a>
-                    <a href="#about" class="nav-link px-3 py-2 text-sm font-medium hover:text-blue-500 transition-colors">About</a>
-                    <a href="#hobbies" class="nav-link px-3 py-2 text-sm font-medium hover:text-blue-500 transition-colors">Hobbies</a>
-                    <a href="#repos" class="nav-link px-3 py-2 text-sm font-medium hover:text-blue-500 transition-colors">GitHub</a>
-                    <a href="#contact" class="nav-link px-3 py-2 text-sm font-medium hover:text-blue-500 transition-colors">Contact</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-sm font-medium">Home</a>
+                    <a href="#about" class="nav-link text-sm font-medium">About</a>
+                    <a href="#hobbies" class="nav-link text-sm font-medium">Hobbies</a>
+                    <a href="#repos" class="nav-link text-sm font-medium">GitHub</a>
+                    <a href="#contact" class="nav-link text-sm font-medium">Contact</a>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-bars text-xl"></i>
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg" aria-label="Open menu">
+                        <i class="fas fa-bars text-2xl" style="color: var(--text-primary);"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200">
-            <div class="px-4 py-2 space-y-2">
-                <a href="#home" class="block px-3 py-2 text-sm font-medium hover:text-blue-500 transition-colors">Home</a>
-                <a href="#about" class="block px-3 py-2 text-sm font-medium hover:text-blue-500 transition-colors">About</a>
-                <a href="#hobbies" class="block px-3 py-2 text-sm font-medium hover:text-blue-500 transition-colors">Hobbies</a>
-                <a href="#repos" class="block px-3 py-2 text-sm font-medium hover:text-blue-500 transition-colors">GitHub</a>
-                <a href="#contact" class="block px-3 py-2 text-sm font-medium hover:text-blue-500 transition-colors">Contact</a>
-            </div>
-        </div>
     </nav>
 
-    <!-- Home Section -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 text-center">
+        <button id="mobile-menu-close-btn" class="absolute top-6 right-6 p-2" aria-label="Close menu">
+            <i class="fas fa-times text-4xl text-white"></i>
+        </button>
+        <a href="#home" class="text-3xl font-bold text-white">Home</a>
+        <a href="#about" class="text-3xl font-bold text-white">About</a>
+        <a href="#hobbies" class="text-3xl font-bold text-white">Hobbies</a>
+        <a href="#repos" class="text-3xl font-bold text-white">GitHub</a>
+        <a href="#contact" class="text-3xl font-bold text-white">Contact</a>
+    </div>
+
     <section id="home" class="section relative overflow-hidden">
         <div class="particles"></div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <div class="fade-in">
-                <div class="mb-8">
-                    <img src="https://github.com/0xArjit.png" alt="Arjit Jha" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500 shadow-2xl" style="animation: float 3s ease-in-out infinite;">
-                </div>
+                <img src="https://github.com/0xArjit.png" alt="Arjit Jha" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 shadow-2xl" style="border-color: var(--text-accent); animation: float 3s ease-in-out infinite;" loading="lazy">
                 <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text">Arjit Jha</h1>
-                <p class="text-xl md:text-2xl text-gray-600 mb-8 typewriter">17-year-old Passionate Coder from Jharkhand</p>
-                
-                <!-- Animated Code Snippet -->
-                <div class="max-w-2xl mx-auto mb-8">
-                    <div class="code-block">
-                        <div class="flex items-center mb-3">
-                            <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                            <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                            <span class="text-sm text-gray-500 ml-2">main.cpp</span>
-                        </div>
-                        <pre style="color: var(--text-secondary);"><code><span style="color: #cf8e6d;">#include</span> <span style="color: #6aab73;">&lt;iostream&gt;</span>
-<span style="color: #cf8e6d;">#include</span> <span style="color: #6aab73;">&lt;string&gt;</span>
-
-<span style="color: #cf8e6d;">class</span> <span style="color: #ffc66d;">Developer</span> {
-<span style="color: #cf8e6d;">public:</span>
-    <span style="color: #ffc66d;">Developer</span>(<span style="color: #cf8e6d;">std::string</span> name) : <span style="color: #9876aa;">name_</span>(name) {}
-    
-    <span style="color: #cf8e6d;">void</span> <span style="color: #ffc66d;">code</span>() {
-        <span style="color: #4ec9b0;">std::cout</span> << <span style="color: #6aab73;">"Hello, I'm "</span> << <span style="color: #9876aa;">name_</span> 
-                  << <span style="color: #6aab73;">", let's build something amazing!"</span> 
-                  << <span style="color: #4ec9b0;">std::endl</span>;
-    }
-    
-<span style="color: #cf8e6d;">private:</span>
-    <span style="color: #cf8e6d;">std::string</span> <span style="color: #9876aa;">name_</span>;
-};</code></pre>
-                    </div>
-                </div>
-
-                <!-- Social Links -->
-                <div class="flex justify-center space-x-6 mb-8">
-                    <a href="https://github.com/0xArjit" target="_blank" class="w-14 h-14 rounded-full bg-gray-900 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-xl">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-                    <a href="https://instagram.com/arjit.xyz" target="_blank" class="w-14 h-14 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-xl">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <a href="https://t.me/ThisIsARJ" target="_blank" class="w-14 h-14 rounded-full bg-blue-500 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-xl">
-                        <i class="fab fa-telegram text-xl"></i>
-                    </a>
-                    <a href="mailto:arjitjha47@gmail.com" class="w-14 h-14 rounded-full bg-red-500 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-xl">
-                        <i class="fas fa-envelope text-xl"></i>
-                    </a>
-                </div>
-
-                <div class="animate-bounce">
-                    <a href="#about" class="inline-block text-4xl text-blue-500 hover:text-blue-600 transition-colors">
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                </div>
+                <p class="text-xl md:text-2xl typewriter" style="color: var(--text-secondary);">Passionate Coder & Developer</p>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section py-20">
+    <section id="about" class="section">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">About Me</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    A passionate 17-year-old developer from Pakur, Jharkhand, India, crafting digital solutions with code and creativity.
-                </p>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto" style="color: var(--text-secondary);">A passionate 17-year-old developer from Pakur, Jharkhand, crafting digital solutions with code and creativity.</p>
             </div>
-            
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="fade-in">
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 card-hover" style="background-color: var(--bg-secondary); box-shadow: var(--shadow);">
+                    <div class="p-8 rounded-2xl card-hover" style="background-color: var(--bg-secondary); box-shadow: var(--shadow);">
                         <h3 class="text-2xl font-bold mb-6 gradient-text">Personal Info</h3>
                         <div class="space-y-4">
-                            <div class="flex items-center">
-                                <i class="fas fa-user text-blue-500 w-6 mr-3"></i>
-                                <span><strong>Name:</strong> Arjit Jha</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-birthday-cake text-blue-500 w-6 mr-3"></i>
-                                <span><strong>Age:</strong> 17 years old</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-map-marker-alt text-blue-500 w-6 mr-3"></i>
-                                <span><strong>Location:</strong> Pakur, Jharkhand, India</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-code text-blue-500 w-6 mr-3"></i>
-                                <span><strong>GitHub:</strong> 0xArjit</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-heart text-blue-500 w-6 mr-3"></i>
-                                <span><strong>Passion:</strong> Coding & Gaming</span>
-                            </div>
+                            <div class="flex items-center"><i class="fas fa-user w-6 mr-3" style="color: var(--text-accent);"></i><span><strong>Name:</strong> Arjit Jha</span></div>
+                            <div class="flex items-center"><i class="fas fa-birthday-cake w-6 mr-3" style="color: var(--text-accent);"></i><span><strong>Age:</strong> 17 years old</span></div>
+                            <div class="flex items-center"><i class="fas fa-map-marker-alt w-6 mr-3" style="color: var(--text-accent);"></i><span><strong>Location:</strong> Pakur, Jharkhand</span></div>
+                            <div class="flex items-center"><i class="fab fa-github w-6 mr-3" style="color: var(--text-accent);"></i><span><strong>GitHub:</strong> 0xArjit</span></div>
+                            <div class="flex items-center"><i class="fas fa-heart w-6 mr-3" style="color: var(--text-accent);"></i><span><strong>Passion:</strong> Coding & Gaming</span></div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="fade-in">
+                <div class="fade-in" style="--delay: 0.2s;">
                     <div class="code-block">
-                        <div class="flex items-center mb-3">
-                            <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                            <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                            <span class="text-sm text-gray-500 ml-2">about_me.cpp</span>
                         </div>
-                        <pre style="color: var(--text-secondary);"><code><span style="color: #cf8e6d;">#include</span> <span style="color: #6aab73;">&lt;iostream&gt;</span>
-<span style="color: #cf8e6d;">#include</span> <span style="color: #6aab73;">&lt;vector&gt;</span>
-
-<span style="color: #cf8e6d;">struct</span> <span style="color: #ffc66d;">AboutMe</span> {
-    <span style="color: #cf8e6d;">std::string</span> <span style="color: #9876aa;">name</span> = <span style="color: #6aab73;">"Arjit Jha"</span>;
-    <span style="color: #cf8e6d;">int</span> <span style="color: #9876aa;">age</span> = <span style="color: #6897bb;">17</span>;
-    <span style="color: #cf8e6d;">std::string</span> <span style="color: #9876aa;">location</span> = <span style="color: #6aab73;">"Pakur, Jharkhand"</span>;
-    
-    <span style="color: #cf8e6d;">std::vector</span>&lt;<span style="color: #cf8e6d;">std::string</span>&gt; <span style="color: #9876aa;">skills</span> = {
-        <span style="color: #6aab73;">"C++"</span>, <span style="color: #6aab73;">"Python"</span>, <span style="color: #6aab73;">"JavaScript"</span>,
-        <span style="color: #6aab73;">"Problem Solving"</span>, <span style="color: #6aab73;">"Algorithms"</span>
-    };
-    
-    <span style="color: #cf8e6d;">std::vector</span>&lt;<span style="color: #cf8e6d;">std::string</span>&gt; <span style="color: #9876aa;">passions</span> = {
-        <span style="color: #6aab73;">"Coding"</span>, <span style="color: #6aab73;">"Gaming"</span>, <span style="color: #6aab73;">"Learning"</span>
-    };
-    
-    <span style="color: #cf8e6d;">void</span> <span style="color: #ffc66d;">introduce</span>() {
-        <span style="color: #4ec9b0;">std::cout</span> << <span style="color: #6aab73;">"Hey! I'm a young developer "</span>
-                  << <span style="color: #6aab73;">"passionate about creating "</span>
-                  << <span style="color: #6aab73;">"innovative solutions!"</span> 
-                  << <span style="color: #4ec9b0;">std::endl</span>;
-    }
-};</code></pre>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Hobbies Section -->
-    <section id="hobbies" class="section py-20">
+    
+    <section id="hobbies" class="section">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">My Hobbies</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    When I'm not coding, you'll find me gaming or exploring new technologies. Here's what keeps me busy!
-                </p>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto" style="color: var(--text-secondary);">When I'm not coding, you'll find me gaming or exploring new technologies.</p>
             </div>
-            
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Gaming Card -->
-                <div class="fade-in">
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 card-hover" style="background-color: var(--bg-secondary); box-shadow: var(--shadow);">
-                        <div class="text-center mb-6">
-                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
-                                <i class="fas fa-gamepad text-3xl text-white"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold gradient-text">Gaming</h3>
-                        </div>
-                        <p class="text-gray-600 mb-6 text-center">
-                            Gaming is my ultimate stress reliever! I love exploring virtual worlds, strategizing in competitive games, and connecting with fellow gamers worldwide.
-                        </p>
-                        
-                        <!-- Gaming Code Snippet -->
-                        <div class="code-block">
-                            <pre style="color: var(--text-secondary); font-size: 0.8rem;"><code><span style="color: #cf8e6d;">class</span> <span style="color: #ffc66d;">Gamer</span> {
-<span style="color: #cf8e6d;">public:</span>
-    <span style="color: #cf8e6d;">void</span> <span style="color: #ffc66d;">playGame</span>() {
-        <span style="color: #cf8e6d;">while</span>(<span style="color: #6897bb;">true</span>) {
-            <span style="color: #ffc66d;">explore</span>();
-            <span style="color: #ffc66d;">compete</span>();
-            <span style="color: #ffc66d;">haveFun</span>();
-        }
-    }
-    
-<span style="color: #cf8e6d;">private:</span>
-    <span style="color: #cf8e6d;">bool</span> <span style="color: #9876aa;">isPassionate</span> = <span style="color: #6897bb;">true</span>;
-};</code></pre>
-                        </div>
-                        
-                        <div class="mt-6 flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Strategy Games</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">RPGs</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Competitive</span>
-                        </div>
-                    </div>
                 </div>
-
-                <!-- Coding Card -->
-                <div class="fade-in">
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 card-hover" style="background-color: var(--bg-secondary); box-shadow: var(--shadow);">
-                        <div class="text-center mb-6">
-                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-teal-500 flex items-center justify-center">
-                                <i class="fas fa-code text-3xl text-white"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold gradient-text">Coding</h3>
-                        </div>
-                        <p class="text-gray-600 mb-6 text-center">
-                            Coding is not just my hobby, it's my passion! I love solving complex problems, building innovative projects, and constantly learning new technologies.
-                        </p>
-                        
-                        <!-- Coding Code Snippet -->
-                        <div class="code-block">
-                            <pre style="color: var(--text-secondary); font-size: 0.8rem;"><code><span style="color: #cf8e6d;">template</span>&lt;<span style="color: #cf8e6d;">typename</span> T&gt;
-<span style="color: #cf8e6d;">class</span> <span style="color: #ffc66d;">Programmer</span> {
-<span style="color: #cf8e6d;">public:</span>
-    T <span style="color: #ffc66d;">solve</span>(T problem) {
-        <span style="color: #cf8e6d;">while</span>(!<span style="color: #ffc66d;">isSolved</span>(problem)) {
-            <span style="color: #ffc66d;">think</span>();
-            <span style="color: #ffc66d;">code</span>();
-            <span style="color: #ffc66d;">debug</span>();
-        }
-        <span style="color: #cf8e6d;">return</span> solution;
-    }
-    
-<span style="color: #cf8e6d;">private:</span>
-    T <span style="color: #9876aa;">passion</span> = <span style="color: #6aab73;">"unlimited"</span>;
-};</code></pre>
-                        </div>
-                        
-                        <div class="mt-6 flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">C++</span>
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">JavaScript</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Python</span>
-                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">Problem Solving</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- GitHub Repos Section -->
-    <section id="repos" class="section py-20">
+    <section id="repos" class="section">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">GitHub Repositories</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Check out my latest projects and contributions on GitHub. Always building something new!
-                </p>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto" style="color: var(--text-secondary);">Check out my latest projects and contributions on GitHub.</p>
             </div>
-            
             <div id="repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Loading State -->
-                <div class="col-span-full text-center py-12">
-                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-                    <p class="mt-4 text-gray-600">Loading repositories...</p>
-                </div>
+                <div class="col-span-full text-center py-12"><div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2" style="border-color: var(--text-accent);"></div><p class="mt-4" style="color: var(--text-secondary);">Loading repositories...</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section py-20">
+    <section id="contact" class="section">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Get In Touch</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Have a project in mind or just want to say hello? I'd love to hear from you!
-                </p>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto" style="color: var(--text-secondary);">Have a project in mind or just want to say hello? I'd love to hear from you!</p>
             </div>
-            
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
-                    <div class="space-y-6">
-                        <h3 class="text-3xl font-bold mb-8 gradient-text">Let's Connect!</h3>
-                        
-                        <!-- Contact Links -->
-                        <div class="space-y-4">
-                            <a href="https://github.com/0xArjit" target="_blank" class="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-all card-hover" style="background-color: var(--bg-secondary); box-shadow: var(--shadow);">
-                                <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fab fa-github text-white text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">GitHub</h4>
-                                    <p class="text-sm text-gray-600">0xArjit</p>
-                                </div>
-                            </a>
-                            
-                            <a href="https://instagram.com/arjit.xyz" target="_blank" class="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-all card-hover" style="background-color: var(--bg-secondary); box-shadow: var(--shadow);">
-                                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fab fa-instagram text-white text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Instagram</h4>
-                                    <p class="text-sm text-gray-600">@arjit.xyz</p>
-                                </div>
-                            </a>
-                            
-                            <a href="https://t.me/ThisIsARJ" target="_blank" class="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-all card-hover" style="background-color: var(--bg-secondary); box-shadow: var(--shadow);">
-                                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fab fa-telegram text-white text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Telegram</h4>
-                                    <p class="text-sm text-gray-600">ThisIsARJ</p>
-                                </div>
-                            </a>
-                            
-                            <a href="mailto:arjitjha47@gmail.com" class="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-all card-hover" style="background-color: var(--bg-secondary); box-shadow: var(--shadow);">
-                                <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-envelope text-white text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Email</h4>
-                                    <p class="text-sm text-gray-600">arjitjha47@gmail.com</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
                 </div>
-                
-                <div class="fade-in">
-                    <div class="code-block">
-                        <div class="flex items-center mb-3">
-                            <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                            <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                            <span class="text-sm text-gray-500 ml-2">contact.cpp</span>
-                        </div>
-                        <pre style="color: var(--text-secondary);"><code><span style="color: #cf8e6d;">#include</span> <span style="color: #6aab73;">&lt;iostream&gt;</span>
-<span style="color: #cf8e6d;">#include</span> <span style="color: #6aab73;">&lt;map&gt;</span>
-
-<span style="color: #cf8e6d;">class</span> <span style="color: #ffc66d;">ContactMe</span> {
-<span style="color: #cf8e6d;">public:</span>
-    <span style="color: #ffc66d;">ContactMe</span>() {
-        <span style="color: #9876aa;">socials_</span>[<span style="color: #6aab73;">"github"</span>] = <span style="color: #6aab73;">"0xArjit"</span>;
-        <span style="color: #9876aa;">socials_</span>[<span style="color: #6aab73;">"instagram"</span>] = <span style="color: #6aab73;">"arjit.xyz"</span>;
-        <span style="color: #9876aa;">socials_</span>[<span style="color: #6aab73;">"telegram"</span>] = <span style="color: #6aab73;">"ThisIsARJ"</span>;
-        <span style="color: #9876aa;">socials_</span>[<span style="color: #6aab73;">"email"</span>] = <span style="color: #6aab73;">"arjitjha47@gmail.com"</span>;
-    }
-    
-    <span style="color: #cf8e6d;">void</span> <span style="color: #ffc66d;">reachOut</span>() {
-        <span style="color: #4ec9b0;">std::cout</span> << <span style="color: #6aab73;">"Let's collaborate and "</span>
-                  << <span style="color: #6aab73;">"build something amazing "</span>
-                  << <span style="color: #6aab73;">"together!"</span> << <span style="color: #4ec9b0;">std::endl</span>;
-    }
-    
-<span style="color: #cf8e6d;">private:</span>
-    <span style="color: #cf8e6d;">std::map</span>&lt;<span style="color: #cf8e6d;">std::string</span>, <span style="color: #cf8e6d;">std::string</span>&gt; <span style="color: #9876aa;">socials_</span>;
-};</code></pre>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 border-t" style="border-color: var(--border-color); background-color: var(--bg-secondary);">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <div class="mb-6">
-                    <h3 class="text-2xl font-bold gradient-text mb-2">Arjit Jha</h3>
-                    <p class="text-gray-600">Passionate Developer • Gaming Enthusiast • Problem Solver</p>
-                </div>
-                
-                <div class="flex justify-center space-x-6 mb-6">
-                    <a href="https://github.com/0xArjit" target="_blank" class="text-gray-600 hover:text-blue-500 transition-colors">
-                        <i class="fab fa-github text-2xl"></i>
-                    </a>
-                    <a href="https://instagram.com/arjit.xyz" target="_blank" class="text-gray-600 hover:text-pink-500 transition-colors">
-                        <i class="fab fa-instagram text-2xl"></i>
-                    </a>
-                    <a href="https://t.me/ThisIsARJ" target="_blank" class="text-gray-600 hover:text-blue-500 transition-colors">
-                        <i class="fab fa-telegram text-2xl"></i>
-                    </a>
-                    <a href="mailto:arjitjha47@gmail.com" class="text-gray-600 hover:text-red-500 transition-colors">
-                        <i class="fas fa-envelope text-2xl"></i>
-                    </a>
-                </div>
-                
-                <div class="text-sm text-gray-500">
-                    <p>&copy; 2025 Arjit Jha. Made with ❤️ and lots of ☕</p>
-                    <p class="mt-2">Designed & Developed in Pakur, Jharkhand, India</p>
-                </div>
-            </div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm" style="color: var(--text-secondary);">&copy; 2025 Arjit Jha. Made with ❤️ in Pakur, Jharkhand.</p>
         </div>
     </footer>
 
-    <!-- Theme Switcher -->
     <div class="theme-switcher">
-        <button id="theme-btn" class="p-4 rounded-full hover:scale-105 transition-all">
+        <button id="theme-btn" aria-label="Change theme">
             <i class="fas fa-palette text-2xl" style="color: var(--text-accent);"></i>
         </button>
-        
-        <!-- Theme Menu -->
-        <div id="theme-menu" class="absolute bottom-16 right-0 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl min-w-48 hidden" style="background-color: var(--bg-secondary); border-color: var(--border-color); box-shadow: var(--shadow);">
-            <div class="p-2">
-                <button data-theme="system" class="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors flex items-center">
-                    <i class="fas fa-desktop mr-3 text-blue-500"></i>
-                    System (Auto)
-                </button>
-                <button data-theme="github-dark" class="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors flex items-center">
-                    <i class="fab fa-github mr-3 text-gray-700"></i>
-                    GitHub Dark
-                </button>
-                <button data-theme="github-light" class="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors flex items-center">
-                    <i class="fab fa-github mr-3 text-gray-400"></i>
-                    GitHub Light
-                </button>
-                <button data-theme="light-material" class="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors flex items-center">
-                    <i class="fas fa-sun mr-3 text-yellow-500"></i>
-                    Light Material
-                </button>
-                <button data-theme="dark-material" class="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors flex items-center">
-                    <i class="fas fa-moon mr-3 text-purple-500"></i>
-                    Dark Material
-                </button>
-            </div>
+        <div id="theme-menu" class="absolute bottom-20 right-0 rounded-lg shadow-xl min-w-52 hidden p-2" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
+            <button data-theme="system" class="w-full text-left px-3 py-2 rounded-md transition-colors flex items-center hover:bg-gray-500/10"><i class="fas fa-desktop mr-3 w-5 text-center" style="color: var(--text-accent);"></i>System</button>
+            <button data-theme="github-dark" class="w-full text-left px-3 py-2 rounded-md transition-colors flex items-center hover:bg-gray-500/10"><i class="fab fa-github mr-3 w-5 text-center"></i>GitHub Dark</button>
+            <button data-theme="dracula" class="w-full text-left px-3 py-2 rounded-md transition-colors flex items-center hover:bg-gray-500/10"><i class="fas fa-ghost mr-3 w-5 text-center text-purple-400"></i>Dracula</button>
+            <button data-theme="nord" class="w-full text-left px-3 py-2 rounded-md transition-colors flex items-center hover:bg-gray-500/10"><i class="fas fa-snowflake mr-3 w-5 text-center text-blue-300"></i>Nord</button>
+            <button data-theme="solarized-light" class="w-full text-left px-3 py-2 rounded-md transition-colors flex items-center hover:bg-gray-500/10"><i class="fas fa-sun mr-3 w-5 text-center text-yellow-500"></i>Solarized Light</button>
+            <button data-theme="synthwave" class="w-full text-left px-3 py-2 rounded-md transition-colors flex items-center hover:bg-gray-500/10"><i class="fas fa-wave-square mr-3 w-5 text-center text-pink-400"></i>Synthwave</button>
         </div>
     </div>
 
     <script>
-        // Theme Management System
-        const themeManager = {
-            currentTheme: 'system',
+        document.addEventListener('DOMContentLoaded', () => {
             
-            init() {
-                this.loadTheme();
-                this.bindEvents();
-                this.setSystemTheme();
-            },
-            
-            loadTheme() {
-                const savedTheme = localStorage.getItem('portfolio-theme') || 'system';
-                this.setTheme(savedTheme);
-            },
-            
-            saveTheme(theme) {
-                localStorage.setItem('portfolio-theme', theme);
-            },
-            
-            setTheme(theme) {
-                this.currentTheme = theme;
-                
-                if (theme === 'system') {
-                    this.setSystemTheme();
-                } else {
-                    document.documentElement.setAttribute('data-theme', theme);
-                }
-                
-                this.saveTheme(theme);
-            },
-            
-            setSystemTheme() {
-                if (this.currentTheme !== 'system') return;
-                
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                document.documentElement.setAttribute('data-theme', prefersDark ? 'github-dark' : 'light-material');
-            },
-            
-            bindEvents() {
-                // Theme button click
-                document.getElementById('theme-btn').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const menu = document.getElementById('theme-menu');
-                    menu.classList.toggle('hidden');
-                });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', () => {
-                    document.getElementById('theme-menu').classList.add('hidden');
-                });
-                
-                // Theme selection
-                document.querySelectorAll('[data-theme]').forEach(button => {
-                    button.addEventListener('click', () => {
-                        const theme = button.getAttribute('data-theme');
-                        this.setTheme(theme);
-                        document.getElementById('theme-menu').classList.add('hidden');
+            // --- THEME MANAGER ---
+            const themeManager = {
+                init() {
+                    this.themeBtn = document.getElementById('theme-btn');
+                    this.themeMenu = document.getElementById('theme-menu');
+                    this.themeButtons = this.themeMenu.querySelectorAll('[data-theme]');
+                    this.currentTheme = localStorage.getItem('portfolio-theme') || 'system';
+                    this.applyTheme(this.currentTheme);
+                    this.bindEvents();
+                },
+                bindEvents() {
+                    this.themeBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.themeMenu.classList.toggle('hidden');
                     });
-                });
-                
-                // Listen for system theme changes
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-                    this.setSystemTheme();
-                });
-            }
-        };
-
-        // Particle Animation System
-        const particleSystem = {
-            container: document.querySelector('.particles'),
-            particles: [],
-            
-            init() {
-                this.createParticles();
-                this.animate();
-            },
-            
-            createParticles() {
-                for (let i = 0; i < 20; i++) {
-                    this.createParticle();
-                }
-            },
-            
-            createParticle() {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                
-                this.container.appendChild(particle);
-                this.particles.push(particle);
-                
-                // Remove particle after animation
-                setTimeout(() => {
-                    if (particle.parentNode) {
-                        particle.parentNode.removeChild(particle);
-                    }
-                    const index = this.particles.indexOf(particle);
-                    if (index > -1) {
-                        this.particles.splice(index, 1);
-                    }
-                }, 6000);
-            },
-            
-            animate() {
-                setInterval(() => {
-                    if (this.particles.length < 20) {
-                        this.createParticle();
-                    }
-                }, 300);
-            }
-        };
-
-        // Navigation System
-        const navigation = {
-            init() {
-                this.bindEvents();
-                this.updateActiveSection();
-            },
-            
-            bindEvents() {
-                // Mobile menu toggle
-                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-                const mobileMenu = document.getElementById('mobile-menu');
-                
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-                
-                // Smooth scroll for navigation links
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const target = document.querySelector(anchor.getAttribute('href'));
-                        if (target) {
-                            const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 80;
-                            window.scrollTo({
-                                top: offsetTop,
-                                behavior: 'smooth'
-                            });
-                        }
-                        // Close mobile menu
-                        mobileMenu.classList.add('hidden');
+                    document.addEventListener('click', () => this.themeMenu.classList.add('hidden'));
+                    this.themeButtons.forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            this.applyTheme(e.currentTarget.dataset.theme);
+                        });
                     });
-                });
-                
-                // Update active section on scroll
-                window.addEventListener('scroll', () => {
-                    this.updateActiveSection();
-                });
-            },
-            
-            updateActiveSection() {
-                const sections = document.querySelectorAll('section[id]');
-                const navLinks = document.querySelectorAll('.nav-link');
-                
-                let currentSection = '';
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-                    if (sectionTop <= 100) {
-                        currentSection = section.getAttribute('id');
+                    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                        if (this.currentTheme === 'system') this.applySystemTheme();
+                    });
+                },
+                applyTheme(theme) {
+                    this.currentTheme = theme;
+                    localStorage.setItem('portfolio-theme', theme);
+                    if (theme === 'system') {
+                        this.applySystemTheme();
+                    } else {
+                        document.documentElement.setAttribute('data-theme', theme);
                     }
-                });
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${currentSection}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        };
+                },
+                applySystemTheme() {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'github-dark' : 'solarized-light');
+                }
+            };
 
-        // Scroll Animation System
-        const scrollAnimations = {
-            init() {
-                this.observeElements();
-            },
-            
-            observeElements() {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
+            // --- NAVIGATION ---
+            const navigation = {
+                init() {
+                    this.mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                    this.mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
+                    this.mobileMenu = document.getElementById('mobile-menu');
+                    this.navLinks = document.querySelectorAll('a[href^="#"]');
+                    this.sections = document.querySelectorAll('section[id]');
+                    this.bindEvents();
+                    this.updateActiveLink();
+                },
+                bindEvents() {
+                    this.mobileMenuBtn.addEventListener('click', () => this.mobileMenu.classList.remove('hidden'));
+                    this.mobileMenuCloseBtn.addEventListener('click', () => this.mobileMenu.classList.add('hidden'));
+                    this.navLinks.forEach(link => {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const targetId = link.getAttribute('href');
+                            const targetElement = document.querySelector(targetId);
+                            if (targetElement) {
+                                const offset = document.querySelector('nav').offsetHeight;
+                                window.scrollTo({ top: targetElement.offsetTop - offset, behavior: 'smooth' });
+                            }
+                            this.mobileMenu.classList.add('hidden');
+                        });
+                    });
+                    window.addEventListener('scroll', () => this.updateActiveLink(), { passive: true });
+                },
+                updateActiveLink() {
+                    let current = '';
+                    this.sections.forEach(section => {
+                        if (pageYOffset >= section.offsetTop - (screen.height / 3)) {
+                            current = section.getAttribute('id');
                         }
                     });
-                }, {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                });
-                
-                document.querySelectorAll('.fade-in').forEach(el => {
-                    observer.observe(el);
-                });
-            }
-        };
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href').substring(1) === current);
+                    });
+                }
+            };
 
-        // GitHub Repository Fetcher
-        const githubRepos = {
-            username: '0xArjit',
-            container: document.getElementById('repos-container'),
-            
-            async init() {
-                try {
-                    await this.fetchRepos();
-                } catch (error) {
-                    this.showError();
+            // --- PARTICLE ANIMATION (Performance Optimized) ---
+            const particleSystem = {
+                init() {
+                    this.container = document.querySelector('.particles');
+                    if (!this.container) return;
+                    this.createParticles(25);
+                    this.animate();
+                },
+                createParticles(count) {
+                    for (let i = 0; i < count; i++) {
+                        const particle = document.createElement('div');
+                        particle.className = 'particle';
+                        this.resetParticle(particle);
+                        this.container.appendChild(particle);
+                    }
+                },
+                resetParticle(particle) {
+                    const duration = Math.random() * 5 + 5; // 5-10 seconds
+                    const delay = Math.random() * 5;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.bottom = '-10px';
+                    particle.dataset.startTime = performance.now() + delay * 1000;
+                    particle.dataset.duration = duration * 1000;
+                },
+                animate() {
+                    const particles = this.container.querySelectorAll('.particle');
+                    const animateFrame = (time) => {
+                        particles.forEach(p => {
+                            const startTime = parseFloat(p.dataset.startTime);
+                            const duration = parseFloat(p.dataset.duration);
+                            if (time < startTime) return;
+
+                            const elapsed = time - startTime;
+                            const progress = elapsed / duration;
+                            
+                            if (progress >= 1) {
+                                p.style.opacity = 0;
+                                this.resetParticle(p);
+                            } else {
+                                p.style.opacity = Math.sin(progress * Math.PI); // Fade in and out
+                                const xOffset = Math.sin(progress * Math.PI * 2) * 50; // Gentle sway
+                                p.style.transform = `translate(${xOffset}px, -${progress * 100}vh)`;
+                            }
+                        });
+                        requestAnimationFrame(animateFrame);
+                    };
+                    requestAnimationFrame(animateFrame);
                 }
-            },
-            
-            async fetchRepos() {
-                const response = await fetch(`https://api.github.com/users/${this.username}/repos?sort=updated&per_page=6`);
-                
-                if (!response.ok) {
-                    throw new Error('Failed to fetch repositories');
+            };
+
+            // --- SCROLL ANIMATIONS ---
+            const scrollAnimations = {
+                init() {
+                    this.observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                                this.observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+                    document.querySelectorAll('.fade-in').forEach(el => this.observer.observe(el));
                 }
-                
-                const repos = await response.json();
-                this.displayRepos(repos);
-            },
-            
-            displayRepos(repos) {
-                this.container.innerHTML = '';
-                
-                repos.forEach((repo, index) => {
-                    const repoCard = this.createRepoCard(repo, index);
-                    this.container.appendChild(repoCard);
-                });
-            },
-            
-            createRepoCard(repo, index) {
-                const card = document.createElement('div');
-                card.className = 'fade-in card-hover';
-                card.style.animationDelay = `${index * 0.1}s`;
-                
-                const languageColor = this.getLanguageColor(repo.language);
-                const updatedDate = new Date(repo.updated_at).toLocaleDateString();
-                
-                card.innerHTML = `
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 h-full" style="background-color: var(--bg-secondary); box-shadow: var(--shadow);">
-                        <div class="flex items-start justify-between mb-4">
-                            <h3 class="text-xl font-bold gradient-text truncate">${repo.name}</h3>
-                            <a href="${repo.html_url}" target="_blank" class="text-blue-500 hover:text-blue-600 transition-colors">
-                                <i class="fas fa-external-link-alt"></i>
+            };
+
+            // --- GITHUB REPO FETCHER ---
+            const githubRepos = {
+                async init() {
+                    this.container = document.getElementById('repos-container');
+                    const username = '0xArjit';
+                    try {
+                        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        const repos = await response.json();
+                        this.displayRepos(repos);
+                    } catch (error) {
+                        this.container.innerHTML = `<p class="col-span-full text-center" style="color: var(--text-secondary);">Could not fetch repositories.</p>`;
+                        console.error("GitHub API Error:", error);
+                    }
+                },
+                displayRepos(repos) {
+                    this.container.innerHTML = repos.map((repo, i) => `
+                        <div class="fade-in card-hover h-full" style="transition-delay: ${i * 100}ms;">
+                            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="block p-6 rounded-2xl h-full" style="background-color: var(--bg-secondary); box-shadow: var(--shadow);">
+                                <h3 class="text-xl font-bold gradient-text truncate mb-2">${repo.name}</h3>
+                                <p class="text-sm mb-4 h-12 overflow-hidden" style="color: var(--text-secondary);">${repo.description || 'No description provided.'}</p>
+                                <div class="flex items-center text-sm" style="color: var(--text-secondary);">
+                                    <i class="fas fa-star mr-1 text-yellow-500"></i> ${repo.stargazers_count}
+                                    <span class="mx-2">•</span>
+                                    <span>Updated ${new Date(repo.updated_at).toLocaleDateString()}</span>
+                                </div>
                             </a>
                         </div>
-                        
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">${repo.description || 'No description available'}</p>
-                        
-                        <div class="flex items-center justify-between text-sm text-gray-500">
-                            <div class="flex items-center space-x-4">
-                                ${repo.language ? `
-                                    <div class="flex items-center">
-                                        <div class="w-3 h-3 rounded-full mr-2" style="background-color: ${languageColor};"></div>
-                                        <span>${repo.language}</span>
-                                    </div>
-                                ` : ''}
-                                
-                                <div class="flex items-center">
-                                    <i class="fas fa-star mr-1 text-yellow-500"></i>
-                                    <span>${repo.stargazers_count}</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-400">
-                            Updated ${updatedDate}
-                        </div>
-                    </div>
-                `;
-                
-                // Add intersection observer for animation
-                setTimeout(() => {
-                    scrollAnimations.observeElements();
-                }, 100);
-                
-                return card;
-            },
-            
-            getLanguageColor(language) {
-                const colors = {
-                    'JavaScript': '#f1e05a',
-                    'Python': '#3572A5',
-                    'Java': '#b07219',
-                    'C++': '#f34b7d',
-                    'C': '#555555',
-                    'HTML': '#e34c26',
-                    'CSS': '#563d7c',
-                    'TypeScript': '#2b7489',
-                    'PHP': '#4F5D95',
-                    'Ruby': '#701516',
-                    'Go': '#00ADD8',
-                    'Rust': '#dea584',
-                    'Shell': '#89e051'
-                };
-                
-                return colors[language] || '#6c757d';
-            },
-            
-            showError() {
-                this.container.innerHTML = `
-                    <div class="col-span-full text-center py-12">
-                        <div class="text-red-500 mb-4">
-                            <i class="fas fa-exclamation-triangle text-4xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Unable to load repositories</h3>
-                        <p class="text-gray-600 mb-4">Please check back later or visit my GitHub profile directly.</p>
-                        <a href="https://github.com/${this.username}" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-                            <i class="fab fa-github mr-2"></i>
-                            Visit GitHub Profile
-                        </a>
-                    </div>
-                `;
-            }
-        };
-
-        // Typewriter Effect
-        const typewriterEffect = {
-            init() {
-                const element = document.querySelector('.typewriter');
-                if (element) {
-                    // Reset and restart animation
-                    element.style.animation = 'none';
-                    setTimeout(() => {
-                        element.style.animation = 'typewriter 3s steps(40) 1s 1 normal both, blink 1s steps(40) infinite normal';
-                    }, 100);
+                    `).join('');
+                    scrollAnimations.init(); // Re-initialize observer for new elements
                 }
-            }
-        };
+            };
 
-        // Main Application Initialization
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize all systems
+            // --- INITIALIZE ALL SYSTEMS ---
             themeManager.init();
             navigation.init();
-            scrollAnimations.init();
             particleSystem.init();
+            scrollAnimations.init();
             githubRepos.init();
-            typewriterEffect.init();
-            
-            // Add smooth loading animation
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-            
-            // Performance optimization
-            let ticking = false;
-            function updateOnScroll() {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        navigation.updateActiveSection();
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            }
-            
-            window.addEventListener('scroll', updateOnScroll, { passive: true });
-        });
 
-        // Error handling
-        window.addEventListener('error', (e) => {
-            console.error('Application error:', e.error);
-        });
-
-        // Unhandled promise rejection handling
-        window.addEventListener('unhandledrejection', (e) => {
-            console.error('Unhandled promise rejection:', e.reason);
+            // Fade in body after everything is ready
+            document.body.classList.remove('opacity-0');
         });
     </script>
 </body>
