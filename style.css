@@ -1,0 +1,94 @@
+:root {
+    /* GitHub Theme */
+    --color-bg-github: #ffffff;
+    --color-text-github: #24292e;
+    --color-accent-github: #0366d6;
+
+    /* Dark Material Theme */
+    --color-bg-dark: #121212;
+    --color-text-dark: #e0e0e0;
+    --color-accent-dark: #3f51b5;
+
+    /* Light Material Theme */
+    --color-bg-light: #f5f5f5;
+    --color-text-light: #111111;
+    --color-accent-light: #3f51b5;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.github-theme {
+    background: var(--color-bg-github);
+    color: var(--color-text-github);
+}
+
+body.dark-theme {
+    background: var(--color-bg-dark);
+    color: var(--color-text-dark);
+}
+
+body.light-theme {
+    background: var(--color-bg-light);
+    color: var(--color-text-light);
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hero img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--color-accent-github);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+h2 {
+    margin-top: 2rem;
+    border-bottom: 2px solid var(--color-accent-github);
+    padding-bottom: 0.3rem;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a {
+    color: var(--color-accent-github);
+    text-decoration: none;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: var(--color-accent-github);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+    background: #024e9b;
+}
