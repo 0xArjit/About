@@ -1,36 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>0xArjit | Home</title>
-<link rel="stylesheet" href="styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arjit Jha - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'media',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'roboto': ['Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        'github-dark': '#0d1117',
+                        'github-light': '#ffffff',
+                        'material-primary': '#1976d2',
+                        'material-primary-dark': '#1565c0',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-<header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="hobbies.html">Hobbies</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><button id="theme-btn">🌓</button></li>
-        </ul>
+<body class="font-roboto bg-gray-50 dark:bg-github-dark text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 dark:bg-github-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-medium text-material-primary">Arjit</div>
+                <div class="flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-600 dark:text-gray-300 hover:text-material-primary dark:hover:text-material-primary transition-colors duration-200">Home</a>
+                    <a href="#about" class="nav-link text-gray-600 dark:text-gray-300 hover:text-material-primary dark:hover:text-material-primary transition-colors duration-200">About</a>
+                    <a href="#hobbies" class="nav-link text-gray-600 dark:text-gray-300 hover:text-material-primary dark:hover:text-material-primary transition-colors duration-200">Hobbies</a>
+                    <a href="#contact" class="nav-link text-gray-600 dark:text-gray-300 hover:text-material-primary dark:hover:text-material-primary transition-colors duration-200">Contact</a>
+                </div>
+            </div>
+        </div>
     </nav>
-</header>
 
-<main class="hero-section">
-    <img src="https://github.com/0xArjit.png" alt="0xArjit Profile Picture" class="profile-pic">
-    <h1>0xArjit</h1>
-    <p class="tagline">Just a chill coder. Coding for fun and gaming breaks.</p>
-    <p class="cpp-vibe">// int main() { code(); chill(); return 0; }</p>
-</main>
+    <!-- Home Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8 animate-fade-in">
+                <img src="https://github.com/0xArjit.png" alt="Arjit Jha" class="w-32 h-32 rounded-full mx-auto mb-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <h1 class="text-4xl md:text-6xl font-light mb-4 text-gray-900 dark:text-white">Arjit Jha</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">Just a chill coder. Coding for fun and gaming breaks.</p>
+            </div>
+            
+            <!-- Code Snippet -->
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 mb-8 text-left max-w-md mx-auto shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="flex items-center mb-3">
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
+                </div>
+                <code class="text-sm text-gray-700 dark:text-gray-300 font-mono">
+                    <span class="text-green-600 dark:text-green-400">// int main() {</span><br>
+                    <span class="ml-4 text-blue-600 dark:text-blue-400">code();</span><br>
+                    <span class="ml-4 text-purple-600 dark:text-purple-400">chill();</span><br>
+                    <span class="ml-4 text-orange-600 dark:text-orange-400">return 0;</span><br>
+                    <span class="text-green-600 dark:text-green-400">// }</span>
+                </code>
+            </div>
 
-<footer>
-    <p>© 2025 0xArjit | GitHub: <a href="https://github.com/0xArjit" target="_blank">0xArjit</a></p>
-</footer>
+            <!-- Social Links -->
+            <div class="flex justify-center space-x-6">
+                <a href="https://github.com/0xArjit" target="_blank" class="social-icon">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/arjit.xyz" target="_blank" class="social-icon">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://t.me/ThisIsARJ" target="_blank" class="social-icon">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                </a>
+                <a href="mailto:arjitjha47@gmail.com" class="social-icon">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h1.909L12 11.64l8.455-7.819h1.909c.904 0 1.636.732 1.636 1.636z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
 
-<script src="script.js"></script>
-</body>
-</html>
+    <!-- About Section -->
+    <section id="about" class="min-h-screen flex items-center justify-center px-6 bg-white dark:bg-gray-900">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-light mb-12 text-center text-gray-900 dark:text-white">About Me</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <h3 class="text-xl font-medium mb-4 text-material-primary">Personal Info</h3>
+                        <div class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <p><span class="font-medium">Age:</span> 17 years old</p>
+                            <p><span class="font-medium">Location:</span> Pakur, Jharkhand, India</p>
+                            <p><span class="font-medium">Interests:</span> Coding & Gaming</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 shadow-sm">
+                        <code class="text-sm text-green-600 dark:text-green-400 font-mono">// int main() { enjoyLife(); code(); }</code>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 shadow-sm">
+                        <code class="text-sm text-blue-600 dark:text-blue-400 font-mono">// while(alive) { chill(); sipCoffee(); }</code>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 shadow-sm">
+                        <code class="text-sm text-purple-600 dark:text-purple-400 font-mono">// std::cout << "Code is life!";</code>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                    A passionate young developer from Jharkhand who believes in keeping things simple and enjoyable. 
+                    When not coding, you'll find me exploring the latest games or just chilling with a cup of coffee.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="min-h-screen flex items-center justify-center px-6 bg-gray-50 dark:bg-github-dark">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-light mb-12 text-center text-gray-900 dark:text-white">My Hobbies</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Coding -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-material-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-white">Coding</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">
+                        Love crafting clean code and building things that matter. C++ is my go-to language for solving problems and having fun.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-gray-50 dark:bg-gray-700 rounded p-3">
+                            <code class="text-sm text-green-600 dark:text-green-400 font-mono">// for(auto day : life) { code(); play(); }</code>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 rounded p-3">
+                            <code class="text-sm text-blue-600 dark:text-blue-400 font-mono">// while(alive) { coffee(); code(); }</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gaming -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-white">Gaming</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">
+                        Gaming is my escape and inspiration. From strategy games to indie titles, each game teaches me something new about design and problem-solving.
+                    </p>
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded p-3">
+                        <code class="text-sm text-purple-600 dark:text-purple-400 font-mono">// if(chill) { game(); }</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="min-h-screen flex items-center justify-center px-6 bg-white dark:bg-gray-900">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-light mb-8 text-gray-900 dark:text-white">Get In Touch</h2>
+            
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 mb-8 max-w-sm mx-auto">
+                <code class="text-sm text-material-primary font-mono">// std::cout << "Feel free to connect!";</code>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="space-y-6">
+                    <a href="https://github.com/0xArjit" target="_blank" class="contact-card group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gray-800 dark:bg-gray-700 rounded-lg flex items-center justify-center group-hover:bg-material-primary transition-colors duration-300">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-medium text-gray-900 dark:text-white">GitHub</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">0xArjit</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://www.instagram.com/arjit.xyz" target="_blank" class="contact-card group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-medium text-gray-900 dark:text-white">Instagram</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">@arjit.xyz</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="space-y-6">
+                    <a href="https://t.me/ThisIsARJ" target="_blank" class="contact-card group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-medium text-gray-900 dark:text-white">Telegram</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">ThisIsARJ</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="mailto:arjitjha47@gmail.com" class="contact-card group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center group-hover:bg-red-600 transition-colors duration-300">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h1.909L12 11.64l8.455-7.819h1.909c.904 0 1.636.732 1.636 1.636z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-medium text-gray-900 dark:text-white">Email</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">arjitjha47@gmail.com</p>
+                </div>
