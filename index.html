@@ -30,10 +30,8 @@ tailwind.config = {
 }
 </script>
 
-<!-- Favicon -->
-<link rel="icon" href="https://avatars.githubusercontent.com/0xArjit" type="image/png">
 <style>
-/* Fade in animations */
+/* Global animations */
 @keyframes fadeIn { from {opacity:0; transform: translateY(10px);} to {opacity:1; transform: translateY(0);} }
 .animate-fadeIn { animation: fadeIn 1s ease forwards; }
 .delay-150 { animation-delay: 0.15s; }
@@ -42,35 +40,46 @@ tailwind.config = {
 
 /* Floating theme button */
 .theme-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; }
-.theme-dropdown { display: none; position: absolute; bottom: 3.5rem; right: 0; background: white; border-radius: 0.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.2); min-width: 10rem; overflow: hidden; }
+.theme-dropdown { display: none; position: absolute; bottom: 3.5rem; right: 0; background: white; border-radius: 0.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.2); min-width: 12rem; overflow: hidden; }
 .theme-dropdown button { display: block; width: 100%; padding: 0.5rem 1rem; text-align: left; transition: background 0.2s; }
 .theme-dropdown button:hover { background-color: #6366f1; color: white; }
+
+/* Scroll animation trigger */
+[data-animate] { opacity:0; transform: translateY(20px); transition: all 0.8s ease; }
+[data-animate].visible { opacity:1; transform: translateY(0); }
 </style>
+
 </head>
 <body class="bg-material-light dark:bg-material-dark text-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
 
-<!-- Header / Navbar -->
-<header class="fixed w-full backdrop-blur-md bg-white/30 dark:bg-gray-900/30 z-50 shadow-sm">
-  <div class="max-w-6xl mx-auto flex justify-between items-center py-4 px-6">
-    <a href="#home" class="font-bold text-xl text-accent">Arjit Jha</a>
+<!-- Navbar -->
+<header class="fixed w-full backdrop-blur-md bg-white/30 dark:bg-gray-900/30 z-50 shadow-md">
+  <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+    <a href="#home" class="font-bold text-2xl text-accent">Arjit Jha</a>
     <nav class="space-x-6">
       <a href="#home" class="hover:text-accent transition">Home</a>
       <a href="#about" class="hover:text-accent transition">About</a>
       <a href="#hobbies" class="hover:text-accent transition">Hobbies</a>
       <a href="#contact" class="hover:text-accent transition">Contact</a>
+      <a href="#github" class="hover:text-accent transition">GitHub</a>
     </nav>
   </div>
 </header>
 
-<!-- Home Section -->
-<section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4">
-  <img src="https://avatars.githubusercontent.com/0xArjit" alt="Arjit Jha" class="w-40 h-40 rounded-full shadow-lg mb-6 border-4 border-accent animate-fadeIn">
-  <h1 class="text-4xl md:text-5xl font-bold mb-2 animate-fadeIn">Arjit Jha</h1>
-  <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 animate-fadeIn delay-150">Just a chill coder. Coding for fun and gaming breaks.</p>
-  <pre class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-6 py-4 rounded-lg shadow-lg w-full md:w-2/3 mb-6 animate-fadeIn delay-300 overflow-x-auto">
+<!-- Hero Section -->
+<section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
+  <!-- Hero Profile -->
+  <img src="https://avatars.githubusercontent.com/0xArjit" alt="Arjit Jha" class="w-48 h-48 rounded-full border-4 border-accent shadow-2xl mb-6 animate-fadeIn">
+  <h1 class="text-5xl md:text-6xl font-bold mb-3 animate-fadeIn">Arjit Jha</h1>
+  <p class="text-lg md:text-2xl text-gray-700 dark:text-gray-300 mb-6 animate-fadeIn delay-150">Just a chill coder. Coding for fun and gaming breaks.</p>
+  
+  <!-- Animated C++ code snippet -->
+  <pre class="bg-white/70 dark:bg-gray-800/70 text-gray-800 dark:text-gray-100 px-6 py-4 rounded-xl shadow-lg w-full md:w-2/3 overflow-x-auto animate-fadeIn delay-300">
 <code>// int main() { code(); chill(); return 0; }</code>
   </pre>
-  <div class="flex flex-wrap justify-center gap-6 text-gray-700 dark:text-gray-300 text-2xl animate-fadeIn delay-450">
+
+  <!-- Social Links -->
+  <div class="flex flex-wrap justify-center gap-8 mt-6 text-3xl text-gray-700 dark:text-gray-300 animate-fadeIn delay-450">
     <a href="https://github.com/0xArjit" target="_blank" class="hover:text-accent transition">GitHub</a>
     <a href="https://www.instagram.com/arjit.xyz" target="_blank" class="hover:text-accent transition">Instagram</a>
     <a href="https://t.me/ThisIsARJ" target="_blank" class="hover:text-accent transition">Telegram</a>
@@ -79,56 +88,70 @@ tailwind.config = {
 </section>
 
 <!-- About Section -->
-<section id="about" class="py-20 px-6 max-w-6xl mx-auto">
-  <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center text-accent">About Me</h2>
-  <div class="grid md:grid-cols-2 gap-10 items-center">
-    <div>
-      <p class="mb-4">Hi! I'm <strong>Arjit Jha</strong>, a 17-year-old coder from <strong>Pakur, Jharkhand, India</strong>. I enjoy coding and gaming in my free time.</p>
-      <p class="mb-4">Coding keeps my mind sharp, and gaming helps me unwind. I love exploring new challenges and small projects.</p>
-      <p class="mb-4">Here are some C++ vibes:</p>
+<section id="about" class="py-28 px-6 max-w-7xl mx-auto">
+  <h2 class="text-4xl md:text-5xl font-bold text-center text-accent mb-12" data-animate>About Me</h2>
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div data-animate>
+      <p class="mb-4 text-lg">Hi! I'm <strong>Arjit Jha</strong>, a 17-year-old coder from <strong>Pakur, Jharkhand, India</strong>. I love exploring code, small projects, and gaming in my free time.</p>
+      <p class="mb-4 text-lg">Coding sharpens my mind, gaming refreshes it. I enjoy learning algorithms and experimenting with C++ tricks.</p>
+      <p class="mb-4 text-lg">Some of my C++ vibes:</p>
       <pre class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-6 py-4 rounded-lg shadow-lg overflow-x-auto">
 <code>// int main() { enjoyLife(); code(); }
 // while(alive) { chill(); sipCoffee(); }
 // std::cout << "Code is life!";</code>
       </pre>
     </div>
-    <div class="flex justify-center">
-      <img src="https://avatars.githubusercontent.com/0xArjit" alt="Arjit Jha" class="w-72 h-72 rounded-xl shadow-lg">
+    <div class="flex justify-center" data-animate>
+      <img src="https://avatars.githubusercontent.com/0xArjit" alt="Arjit Jha" class="w-80 h-80 rounded-2xl shadow-2xl">
     </div>
   </div>
 </section>
 
 <!-- Hobbies Section -->
-<section id="hobbies" class="py-20 px-6 bg-gray-50 dark:bg-gray-900">
-  <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center text-accent">Hobbies</h2>
-  <div class="max-w-4xl mx-auto space-y-6 text-center">
-    <p>Coding keeps me creative and sharp, while gaming refreshes my mind.</p>
-    <p>C++ inspired thoughts while enjoying my hobbies:</p>
-    <pre class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-6 py-4 rounded-lg shadow-lg overflow-x-auto">
-<code>// for(auto day : life) { code(); play(); }
-// if(chill) { game(); }
-// while(alive) { coffee(); code(); }</code>
-    </pre>
+<section id="hobbies" class="py-28 px-6 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
+  <h2 class="text-4xl md:text-5xl font-bold text-center text-accent mb-12" data-animate>Hobbies</h2>
+  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
+    <!-- Coding Card -->
+    <div class="bg-white/80 dark:bg-gray-800/80 rounded-xl shadow-lg p-8 text-center hover:scale-105 transition" data-animate>
+      <h3 class="text-2xl font-bold mb-4">Coding</h3>
+      <p class="mb-4">Keeps my mind creative and sharp, exploring new challenges and projects.</p>
+      <pre class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-4 py-2 rounded-lg overflow-x-auto">
+<code>// for(auto day : life) { code(); }</code></pre>
+    </div>
+    <!-- Gaming Card -->
+    <div class="bg-white/80 dark:bg-gray-800/80 rounded-xl shadow-lg p-8 text-center hover:scale-105 transition" data-animate>
+      <h3 class="text-2xl font-bold mb-4">Gaming</h3>
+      <p class="mb-4">Helps me relax and enjoy downtime after coding sessions.</p>
+      <pre class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-4 py-2 rounded-lg overflow-x-auto">
+<code>// if(chill) { game(); }</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- GitHub Repos Section -->
+<section id="github" class="py-28 px-6 max-w-7xl mx-auto">
+  <h2 class="text-4xl md:text-5xl font-bold text-center text-accent mb-12" data-animate>My GitHub Repos</h2>
+  <div id="reposContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-animate>
+    <!-- Repos will be dynamically inserted here -->
   </div>
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="py-20 px-6 max-w-5xl mx-auto">
-  <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center text-accent">Contact Me</h2>
-  <p class="text-center mb-6">Feel free to connect via any platform below:</p>
-  <div class="flex flex-wrap justify-center gap-8 text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6">
+<section id="contact" class="py-28 px-6 max-w-5xl mx-auto">
+  <h2 class="text-4xl md:text-5xl font-bold text-center text-accent mb-12" data-animate>Contact Me</h2>
+  <p class="text-center mb-8">Feel free to connect via any platform below:</p>
+  <div class="flex flex-wrap justify-center gap-8 text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6" data-animate>
     <a href="https://github.com/0xArjit" target="_blank" class="hover:text-accent transition">GitHub</a>
     <a href="https://www.instagram.com/arjit.xyz" target="_blank" class="hover:text-accent transition">Instagram</a>
     <a href="https://t.me/ThisIsARJ" target="_blank" class="hover:text-accent transition">Telegram</a>
     <a href="mailto:arjitjha47@gmail.com" class="hover:text-accent transition">Email</a>
   </div>
-  <pre class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-6 py-4 rounded-lg shadow-lg overflow-x-auto text-center">
-<code>// std::cout << "Feel free to connect!";</code>
-  </pre>
+  <pre class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-6 py-4 rounded-lg shadow-lg overflow-x-auto text-center" data-animate>
+<code>// std::cout << "Feel free to connect!";</code></pre>
 </section>
 
 <!-- Footer -->
-<footer class="py-6 text-center text-gray-500 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700">
+<footer class="py-8 text-center text-gray-500 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700">
   &copy; 2025 Arjit Jha. All rights reserved.
 </footer>
 
@@ -144,27 +167,51 @@ tailwind.config = {
   </div>
 </div>
 
+<!-- Scripts -->
 <script>
-// Dropdown toggle
+// Scroll animation
+const animateElements = document.querySelectorAll('[data-animate]');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if(entry.isIntersecting){entry.target.classList.add('visible');} });
+}, { threshold: 0.2 });
+animateElements.forEach(el => observer.observe(el));
+
+// Theme dropdown toggle
 const btn = document.getElementById('themeButton');
 const dropdown = document.getElementById('themeDropdown');
 btn.addEventListener('click', () => { dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block'; });
 
 // Apply theme
-const themeButtons = dropdown.querySelectorAll('button');
-themeButtons.forEach(button => {
+dropdown.querySelectorAll('button').forEach(button => {
   button.addEventListener('click', () => {
     const theme = button.dataset.theme;
-    if(theme === 'system') {
-      document.body.classList.remove('bg-material-light','bg-material-dark','bg-github-dark','bg-github-light','dark');
-    } else {
-      document.body.classList.remove('bg-material-light','bg-material-dark','bg-github-dark','bg-github-light','dark');
-      if(theme.includes('dark')) document.body.classList.add('dark');
-      document.body.classList.add('bg-' + theme);
-    }
+    document.body.classList.remove('bg-material-light','bg-material-dark','bg-github-dark','bg-github-light','dark');
+    if(theme === 'system') return;
+    if(theme.includes('dark')) document.body.classList.add('dark');
+    document.body.classList.add('bg-' + theme);
     dropdown.style.display = 'none';
   });
 });
+
+// Fetch GitHub repos dynamically
+async function fetchRepos() {
+  const container = document.getElementById('reposContainer');
+  try {
+    const res = await fetch('https://api.github.com/users/0xArjit/repos?sort=updated');
+    const repos = await res.json();
+    repos.forEach(repo => {
+      const card = document.createElement('div');
+      card.className = 'bg-white/80 dark:bg-gray-800/80 rounded-xl shadow-lg p-6 hover:scale-105 transition';
+      card.innerHTML = `
+        <h3 class="text-xl font-bold mb-2">${repo.name}</h3>
+        <p class="mb-4">${repo.description || 'No description provided.'}</p>
+        <a href="${repo.html_url}" target="_blank" class="text-accent hover:underline">View on GitHub</a>
+      `;
+      container.appendChild(card);
+    });
+  } catch(e) { console.error(e); }
+}
+fetchRepos();
 </script>
 
 </body>
